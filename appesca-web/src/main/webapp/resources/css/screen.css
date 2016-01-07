@@ -37,13 +37,17 @@ body {
   background-image: url(#{request.contextPath}/resources/gfx/headerbkg.png);
   background-repeat: repeat-x;
   padding-top: 30px;
+  margin-top: 50px;
   box-shadow: 3px 3px 15px #d5d5d5;
 }
+
+
 #content {
   float: left;
   width: 500px;
   margin: 20px;
 }
+
 #aside {
   font-size: 0.9em;
   width: 275px;

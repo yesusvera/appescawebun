@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TB_LOC_RESIDENCIA", catalog = "appesca")
+@Table(name = "TB_LOC_RESIDENCIA", schema="appesca")
 public class LocResidencia implements java.io.Serializable {
 
 	private static final long serialVersionUID = 3251866057864092677L;

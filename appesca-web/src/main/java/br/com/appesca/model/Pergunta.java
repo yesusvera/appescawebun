@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TB_PERGUNTA", catalog = "appesca")
+@Table(name = "TB_PERGUNTA", schema="appesca")
 public class Pergunta implements java.io.Serializable {
 
 	private static final long serialVersionUID = -8806813412918825907L;

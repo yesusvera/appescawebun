@@ -7,13 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "TB_USUARIO", catalog = "appesca")
+@Table(name = "TB_USUARIO", schema="appesca")
 public class Usuario implements java.io.Serializable {
-	
+
 	private static final long serialVersionUID = -7140175801442164346L;
-	
+
 	private Integer id;
 	private String nome;
 	private String endereco;
@@ -62,6 +64,8 @@ public class Usuario implements java.io.Serializable {
 		this.endereco = endereco;
 	}
 
+	@NotNull
+    @Size(min = 1, max = 20, message="Digite o login.")
 	@Column(name = "login", length = 20)
 	public String getLogin() {
 		return this.login;
@@ -70,7 +74,9 @@ public class Usuario implements java.io.Serializable {
 	public void setLogin(String login) {
 		this.login = login;
 	}
-
+	
+	@NotNull
+    @Size(min = 1, max = 20, message="Digite a senha.")
 	@Column(name = "senha", length = 20)
 	public String getSenha() {
 		return this.senha;

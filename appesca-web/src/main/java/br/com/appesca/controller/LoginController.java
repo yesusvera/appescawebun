@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.appesca.model.Usuario;
+import br.com.appesca.service.LoginService;
 
 @Model
 public class LoginController {
@@ -16,8 +17,8 @@ public class LoginController {
     @Inject
     private FacesContext facesContext;
 
-//    @Inject
-//    private MemberRegistration memberRegistration;
+    @Inject
+    private LoginService loginService;
 
     @Produces
     @Named
@@ -28,17 +29,29 @@ public class LoginController {
     	usuario = new Usuario();
     }
 
-    public void login() throws Exception {
+    public String login() throws Exception {
         try {
-//          memberRegistration.register(newMember);
-            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registered!", "Registration successful");
-            facesContext.addMessage(null, m);
-            inicializaNovoUsuario();
+
+        	Usuario usrTmp = loginService.autenticar(usuario.getLogin(), usuario.getSenha());
+        	
+        	if(usrTmp!=null){
+	            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Autenticado!", "Autenticado com sucesso.");
+	            facesContext.addMessage(null, m);
+	            return "visaoFormularios";
+        	}else{
+        		FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário ou senha inválidos", "Usuário ou senha inválidos.");
+ 	            facesContext.addMessage(null, m);
+        	}
+        	
         } catch (Exception e) {
             String errorMessage = getRootErrorMessage(e);
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Erro ao fazer o login.");
             facesContext.addMessage(null, m);
         }
+        
+        inicializaNovoUsuario();
+        
+        return "";
     }
 
     private String getRootErrorMessage(Exception e) {
