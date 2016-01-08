@@ -18,6 +18,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
     xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
     <title>Appesca - WEB</title>
@@ -30,6 +31,9 @@
             <img src="resources/gfx/logo_appesca.png" width="160"/>
         </div>
         <div id="content">
+        		<h:form style="border:0px;">
+					<p:growl id="messages" showDetail="true" />
+				</h:form>
             <ui:insert name="content">
                     [Template content will be inserted here]
          </ui:insert>

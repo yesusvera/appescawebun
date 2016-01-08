@@ -17,40 +17,58 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-    <title>Appesca - WEB</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <h:outputStylesheet name="css/screen.css" />
+	<title>Appesca - WEB</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<h:outputStylesheet name="css/screen.css" />
 </h:head>
 <h:body>
-    <div id="container">
-        <div class="dualbrand">
-            <img src="resources/gfx/logo_appesca.png" width="160"/>
-        </div>
-        <div id="content">
-            <ui:insert name="content">
-                    [Template content will be inserted here]
-         </ui:insert>
-        </div>
-      <!--   <div id="aside">
-            <p>Learn more about JBoss WildFly.</p>
-            <ul>
-                <li><a
-                    href="https://github.com/wildfly/quickstart/blob/master/guide/Introduction.asciidoc">Getting
-                        Started Developing Applications Guide</a></li>
-                <li><a href="http://www.wildfly.org/">Community
-                        Project Information</a></li>
-            </ul>
-        </div> -->
-        <div id="footer">
-        	<hr/>
-            <p>
-            	Projeto de Pesquisa 2016 - Appesca
-                <br />
-            </p>
-        </div>
-    </div>
+	<div id="cardNoBorder">
+		<hr size="35" width="865"
+			style="border-top: 1px solid #76b326; color: #76b326; background: #76b326; margin-top: 0" />
+		<img src="../resources/gfx/topoAppesca.png" width="100%" align="center" />
+	</div>
+	<div id="cardNoBorder">
+		<h:form style="margin-left:0">
+			<p:growl id="messages" showDetail="true" />
+			<p:menubar style="background:white;">
+				<p:submenu label="Cadastros" icon="ui-icon-document">
+					<p:menuitem value="Equipes"  url="./equipes.jsf"  />
+					<p:menuitem value="Usuários"  url="./usuarios.jsf"/>
+				</p:submenu>
+				<p:submenu label="Formulários de pesquisa" icon="ui-icon-pencil">
+					<p:menuitem value="Camarão e Branco" url="#" />
+					<p:menuitem value="Camarão e Caranguejo" url="#" />
+					<p:menuitem value="Camarão Regional" url="#" />
+				</p:submenu>
+				<f:facet name="options">
+					<p:commandButton value="Sair"
+						action="#{loginController.logout()}" icon="ui-icon-extlink" />
+				</f:facet>
+			</p:menubar>
+			<br/>
+			<b>#{identidade.usuarioLogado.nome}</b>, você possui perfil <i>#{identidade.usuarioLogado.perfil.descricao}</i> 
+					&nbsp;&nbsp;&nbsp;
+		</h:form>
+	</div>
+	<div id="card">
+		<div id="content">
+			<ui:insert name="content">
+			</ui:insert>
+		</div>
+	</div>
+	
+	<div id="cardNoBorder">
+		<div id="footer">
+			<hr width="865"/>
+			<p>
+				Projeto de Pesquisa 2016 - Appesca <br />
+			</p>
+		</div>
+	</div>
 </h:body>
 </html>

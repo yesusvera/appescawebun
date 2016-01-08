@@ -1,20 +1,27 @@
 package br.com.appesca.controller;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Model;
 import javax.enterprise.inject.Produces;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
+import br.com.appesca.model.Identidade;
 import br.com.appesca.model.Usuario;
 import br.com.appesca.service.LoginService;
+import java.io.Serializable;
 
 @Model
-public class LoginController {
+@SessionScoped
+public class LoginController implements Serializable {
 
-    @Inject
+	private static final long serialVersionUID = 7096314126107579474L;
+
+	@Inject
     private FacesContext facesContext;
 
     @Inject
@@ -23,21 +30,31 @@ public class LoginController {
     @Produces
     @Named
     private Usuario usuario;
+    
+    @Inject Identidade identidade;
 
     @PostConstruct
     public void inicializaNovoUsuario() {
     	usuario = new Usuario();
     }
 
+    public String logout() throws Exception{
+    	 ((HttpSession)facesContext.getExternalContext().getSession(false)).invalidate();
+    	 return "visaoFormularios?faces-redirect=true";
+    }
+    
     public String login() throws Exception {
         try {
 
         	Usuario usrTmp = loginService.autenticar(usuario.getLogin(), usuario.getSenha());
         	
         	if(usrTmp!=null){
-	            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Autenticado!", "Autenticado com sucesso.");
+        		identidade.setUsuarioLogado(usrTmp);
+        		
+        		FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Autenticado", "Seja bem vindo.");
 	            facesContext.addMessage(null, m);
-	            return "visaoFormularios";
+	            
+	            return "/admin/visaoFormularios?faces-redirect=true";
         	}else{
         		FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário ou senha inválidos", "Usuário ou senha inválidos.");
  	            facesContext.addMessage(null, m);

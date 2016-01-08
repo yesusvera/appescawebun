@@ -4,11 +4,15 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import br.com.appesca.enums.PerfilEnum;
 
 @Entity
 @Table(name = "TB_USUARIO", schema="appesca")
@@ -21,12 +25,12 @@ public class Usuario implements java.io.Serializable {
 	private String endereco;
 	private String login;
 	private String senha;
-	private Integer perfil;
+	private PerfilEnum perfil;
 
 	public Usuario() {
 	}
 
-	public Usuario(String nome, String endereco, String login, String senha, Integer perfil) {
+	public Usuario(String nome, String endereco, String login, String senha, PerfilEnum perfil) {
 		this.nome = nome;
 		this.endereco = endereco;
 		this.login = login;
@@ -87,11 +91,12 @@ public class Usuario implements java.io.Serializable {
 	}
 
 	@Column(name = "perfil")
-	public Integer getPerfil() {
+	@Enumerated(EnumType.ORDINAL)
+	public PerfilEnum getPerfil() {
 		return this.perfil;
 	}
 
-	public void setPerfil(Integer perfil) {
+	public void setPerfil(PerfilEnum perfil) {
 		this.perfil = perfil;
 	}
 

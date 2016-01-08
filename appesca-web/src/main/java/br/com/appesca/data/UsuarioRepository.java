@@ -16,9 +16,12 @@
  */
 package br.com.appesca.data;
 
+import java.util.List;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -26,7 +29,7 @@ import javax.persistence.criteria.Root;
 import br.com.appesca.model.Usuario;
 
 @ApplicationScoped
-public class LoginRepository {
+public class UsuarioRepository {
 
     @Inject
     private EntityManager em;
@@ -34,7 +37,13 @@ public class LoginRepository {
     public Usuario findById(Long id) {
         return em.find(Usuario.class, id);
     }
-
+    
+    @SuppressWarnings("unchecked")
+	public List<Usuario> listAll(){
+    	 Query query = em.createQuery("SELECT u FROM Usuario u");
+    	 return (List<Usuario>) query.getResultList();
+    }
+    
     public Usuario findByLoginSenha(String login, String senha) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Usuario> criteria = cb.createQuery(Usuario.class);

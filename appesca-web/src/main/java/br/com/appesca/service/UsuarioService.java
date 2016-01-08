@@ -16,6 +16,7 @@
  */
 package br.com.appesca.service;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
@@ -26,7 +27,7 @@ import br.com.appesca.model.Usuario;
 
 // The @Stateless annotation eliminates the need for manual transaction demarcation
 @Stateless
-public class LoginService {
+public class UsuarioService {
 
     @Inject
     private Logger log;
@@ -34,13 +35,8 @@ public class LoginService {
     @Inject
     private UsuarioRepository usuarioRepository;
 
-//    @Inject
-//    private Event<Member> memberEventSrc;
 
-    public Usuario autenticar(String usuario, String senha) throws Exception {
-        log.info("autenticando " + usuario);
-        
-        return usuarioRepository.findByLoginSenha(usuario, senha);
-//        memberEventSrc.fire(member);
+    public List<Usuario> listAll() throws Exception {
+        return usuarioRepository.listAll();
     }
 }
