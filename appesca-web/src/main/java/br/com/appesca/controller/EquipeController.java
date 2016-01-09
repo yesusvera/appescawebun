@@ -77,7 +77,11 @@ public class EquipeController implements Serializable {
     }
 
     public String salvar() throws Exception{
+    	equipe.setListaMembrosEquipe(usuariosEscolhidos);
     	equipeService.save(equipe);
+    	
+    	usuariosEscolhidos = new ArrayList<>();
+    	listaUsuarios = new ArrayList<>();
     	listaEquipes = equipeService.listAll();
     	return "equipes";
     }
@@ -115,8 +119,14 @@ public class EquipeController implements Serializable {
     	return "cadastrarEquipe";
     }
     
-    public String editar(Equipe usr){
-    	this.equipe = usr;
+    public String editar(Equipe equipe){
+    	this.equipe = equipe;
+    	try {
+			listaUsuarios = usuarioService.listAll();
+			usuariosEscolhidos =equipe.getListaMembrosEquipe();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     	return "cadastrarEquipe";
     }
     

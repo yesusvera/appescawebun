@@ -3,13 +3,16 @@ package br.com.appesca.model;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.ByteArrayInputStream;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
@@ -33,19 +36,13 @@ public class Usuario implements java.io.Serializable {
 	private String senha;
 	private PerfilEnum perfil;
 	private byte[] imagem;
+	
+	private List<Equipe> listaEquipes;
 
-	public Usuario() {
-	}
-
-	public Usuario(String nome, String endereco, String login, String senha, PerfilEnum perfil, byte[] imagem) {
-		this.nome = nome;
-		this.endereco = endereco;
-		this.login = login;
-		this.senha = senha;
-		this.perfil = perfil;
-		this.imagem = imagem;
-	}
-
+//	
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy="coordenador") 
+//	List<Equipe> listaEquipesCoordenadas;
+	
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
@@ -127,4 +124,12 @@ public class Usuario implements java.io.Serializable {
 	   }
 	 }
 
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "listaMembrosEquipe")
+	public List<Equipe> getListaEquipes() {
+		return listaEquipes;
+	}
+
+	public void setListaEquipes(List<Equipe> listaEquipes) {
+		this.listaEquipes = listaEquipes;
+	}
 }

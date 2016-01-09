@@ -1,11 +1,20 @@
 package br.com.appesca.model;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,24 +28,12 @@ public class Equipe implements java.io.Serializable {
 	private Integer id;
 	private String nome;
 	private String descricao;
-	private int idCoordenador;
+	
+	private Usuario coordenador;
+	
+	private List<Usuario> listaMembrosEquipe;
+	
 	private Date data;
-
-	public Equipe() {
-	}
-
-	public Equipe(String nome, int idCoordenador, Date data) {
-		this.nome = nome;
-		this.idCoordenador = idCoordenador;
-		this.data = data;
-	}
-
-	public Equipe(String nome, String descricao, int idCoordenador, Date data) {
-		this.nome = nome;
-		this.descricao = descricao;
-		this.idCoordenador = idCoordenador;
-		this.data = data;
-	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -68,15 +65,6 @@ public class Equipe implements java.io.Serializable {
 		this.descricao = descricao;
 	}
 
-	@Column(name = "id_coordenador", nullable = false)
-	public int getIdCoordenador() {
-		return this.idCoordenador;
-	}
-
-	public void setIdCoordenador(int idCoordenador) {
-		this.idCoordenador = idCoordenador;
-	}
-
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "data", nullable = false, length = 19)
 	public Date getData() {
@@ -86,5 +74,27 @@ public class Equipe implements java.io.Serializable {
 	public void setData(Date data) {
 		this.data = data;
 	}
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="id_coordenador")
+	public Usuario getCoordenador() {
+		return coordenador;
+	}
 
+	public void setCoordenador(Usuario coordenador) {
+		this.coordenador = coordenador;
+	}
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "TB_MEMBROS_EQUIPE", schema = "appesca", joinColumns = { 
+			@JoinColumn(name = "id_equipe", nullable = false, updatable = false) }, 
+			inverseJoinColumns = { @JoinColumn(name = "id_usuario", 
+					nullable = false, updatable = false) })
+	public List<Usuario> getListaMembrosEquipe() {
+		return listaMembrosEquipe;
+	}
+
+	public void setListaMembrosEquipe(List<Usuario> listaMembrosEquipe) {
+		this.listaMembrosEquipe = listaMembrosEquipe;
+	}
 }

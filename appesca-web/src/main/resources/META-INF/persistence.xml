@@ -31,6 +31,18 @@
          <!-- <property name="hibernate.hbm2ddl.auto" value="create-drop" /> -->
          <property name="hibernate.hbm2ddl.auto" value="update" />
          <property name="hibernate.show_sql" value="true" />
+         <!-- 
+         <mapping class="br.com.appesca.model.Equipe" />
+         <mapping class="br.com.appesca.model.Formulerio" />
+         <mapping class="br.com.appesca.model.IdentEntrevistado" />
+         <mapping class="br.com.appesca.model.Identidade" />
+         <mapping class="br.com.appesca.model.LocResidencia" />
+         <mapping class="br.com.appesca.model.MembrosEquipe" />
+         <mapping class="br.com.appesca.model.MunicipiosIbge" />
+         <mapping class="br.com.appesca.model.Pergunta" />
+         <mapping class="br.com.appesca.model.Questao" />
+         <mapping class="br.com.appesca.model.Resposta" />
+         <mapping class="br.com.appesca.model.Usuario" /> -->
       </properties>
    </persistence-unit>
 </persistence>
