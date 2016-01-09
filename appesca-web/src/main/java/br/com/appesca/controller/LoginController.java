@@ -1,5 +1,7 @@
 package br.com.appesca.controller;
 
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Model;
@@ -13,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import br.com.appesca.model.Identidade;
 import br.com.appesca.model.Usuario;
 import br.com.appesca.service.LoginService;
-import java.io.Serializable;
 
 @Model
 @SessionScoped
