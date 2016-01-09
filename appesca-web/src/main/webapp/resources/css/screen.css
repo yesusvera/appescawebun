@@ -23,7 +23,8 @@ body {
   /* background-repeat: no-repeat; */
   /* background-size: cover; */
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  font-size: 0.8em;
+/*   font-size: 0.8em; */
+  font-size: x-small;
   color:#363636;
 }
 
