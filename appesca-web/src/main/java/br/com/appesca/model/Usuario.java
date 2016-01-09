@@ -2,6 +2,8 @@ package br.com.appesca.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.io.ByteArrayInputStream;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,8 +11,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 import br.com.appesca.enums.PerfilEnum;
 
@@ -26,16 +32,18 @@ public class Usuario implements java.io.Serializable {
 	private String login;
 	private String senha;
 	private PerfilEnum perfil;
+	private byte[] imagem;
 
 	public Usuario() {
 	}
 
-	public Usuario(String nome, String endereco, String login, String senha, PerfilEnum perfil) {
+	public Usuario(String nome, String endereco, String login, String senha, PerfilEnum perfil, byte[] imagem) {
 		this.nome = nome;
 		this.endereco = endereco;
 		this.login = login;
 		this.senha = senha;
 		this.perfil = perfil;
+		this.imagem = imagem;
 	}
 
 	@Id
@@ -99,5 +107,24 @@ public class Usuario implements java.io.Serializable {
 	public void setPerfil(PerfilEnum perfil) {
 		this.perfil = perfil;
 	}
+
+	@Column(name = "imagem")
+	public byte[] getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(byte[] imagem) {
+		this.imagem = imagem;
+	}
+	
+	
+	@Transient
+	public StreamedContent getImageGraphics()  {
+	   if(imagem!=null){
+		   return new DefaultStreamedContent(new ByteArrayInputStream(imagem));
+	   }else{
+		   return null;
+	   }
+	 }
 
 }

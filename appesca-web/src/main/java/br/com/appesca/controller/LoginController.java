@@ -54,7 +54,7 @@ public class LoginController implements Serializable {
         		FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Autenticado", "Seja bem vindo.");
 	            facesContext.addMessage(null, m);
 	            
-	            return "/admin/visaoFormularios?faces-redirect=true";
+	            return "/admin/visaoFormularios";
         	}else{
         		FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário ou senha inválidos", "Usuário ou senha inválidos.");
  	            facesContext.addMessage(null, m);

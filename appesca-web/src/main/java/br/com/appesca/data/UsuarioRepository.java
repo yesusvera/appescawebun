@@ -38,6 +38,14 @@ public class UsuarioRepository {
         return em.find(Usuario.class, id);
     }
     
+    public void save(Usuario usr){
+    	if(usr.getId()==null){
+    		em.persist(usr);
+    	}else{
+    		em.merge(usr);
+    	}
+    }
+    
     @SuppressWarnings("unchecked")
 	public List<Usuario> listAll(){
     	 Query query = em.createQuery("SELECT u FROM Usuario u");

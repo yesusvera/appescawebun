@@ -24,35 +24,53 @@
 <h:head>
 	<title>Appesca - WEB</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet"
+		href="#{request.contextPath}/resources/font-awesome-4.5.0/css/font-awesome.min.css"></link>
 	<h:outputStylesheet name="css/screen.css" />
 </h:head>
 <h:body>
+	<h:form style="border:0px;">
+		<p:growl globalOnly="true" id="messages" showDetail="true" />
+	</h:form>
 	<div id="cardNoBorder">
 		<hr size="35" width="865"
 			style="border-top: 1px solid #76b326; color: #76b326; background: #76b326; margin-top: 0" />
-		<img src="../resources/gfx/topoAppesca.png" width="100%" align="center" />
+		<h:graphicImage value="/resources/gfx/topoAppesca.png" />
 	</div>
+
 	<div id="cardNoBorder">
-		<h:form style="margin-left:0">
-			<p:growl id="messages" showDetail="true" />
-			<p:menubar style="background:white;">
-				<p:submenu label="Cadastros" icon="ui-icon-document">
-					<p:menuitem value="Equipes"  url="./equipes.jsf"  />
-					<p:menuitem value="Usuários"  url="./usuarios.jsf"/>
-				</p:submenu>
-				<p:submenu label="Formulários de pesquisa" icon="ui-icon-pencil">
-					<p:menuitem value="Camarão e Branco" url="#" />
-					<p:menuitem value="Camarão e Caranguejo" url="#" />
-					<p:menuitem value="Camarão Regional" url="#" />
-				</p:submenu>
-				<f:facet name="options">
-					<p:commandButton value="Sair"
-						action="#{loginController.logout()}" icon="ui-icon-extlink" />
-				</f:facet>
-			</p:menubar>
-			<br/>
-			<b>#{identidade.usuarioLogado.nome}</b>, você possui perfil <i>#{identidade.usuarioLogado.perfil.descricao}</i> 
-					&nbsp;&nbsp;&nbsp;
+		<h:form>
+		<p:menubar style="background:white;">
+			<p:submenu label="Cadastros" icon="ui-icon-document">
+				<p:menuitem value="Equipes" url="/admin/equipes.jsf" />
+				<p:menuitem value="Usuários" url="/admin/usuarios.jsf" />
+			</p:submenu>
+			<p:submenu label="Formulários de pesquisa" icon="ui-icon-pencil">
+				<p:menuitem value="Camarão e Branco" url="#" />
+				<p:menuitem value="Camarão e Caranguejo" url="#" />
+				<p:menuitem value="Camarão Regional" url="#" />
+			</p:submenu>
+			<f:facet name="options">
+				<p:commandButton value="Sair" action="#{loginController.logout()}"
+					icon="ui-icon-extlink" />
+			</f:facet>
+		</p:menubar>
+		<br />
+		<h:commandLink rendered="#{identidade.usuarioLogado.perfil.valor==0}">
+			<i class="fa fa-user-secret" ></i>
+		</h:commandLink>
+		<h:commandLink  rendered="#{identidade.usuarioLogado.perfil.valor==1}">
+			<i class="fa fa-users"></i>
+		</h:commandLink>
+		<h:commandLink rendered="#{identidade.usuarioLogado.perfil.valor==2}">
+			<i class="fa fa-file-audio-o"></i>
+		</h:commandLink>
+		<h:commandLink rendered="#{identidade.usuarioLogado.perfil.valor==3}">
+			<i class="fa fa-street-view"></i>
+		</h:commandLink>
+
+		<b>#{identidade.usuarioLogado.nome}</b>, você possui perfil <i><b>#{identidade.usuarioLogado.perfil.descricao}</b></i>
+		&nbsp;&nbsp;&nbsp;
 		</h:form>
 	</div>
 	<div id="card">
@@ -61,10 +79,12 @@
 			</ui:insert>
 		</div>
 	</div>
-	
+
 	<div id="cardNoBorder">
 		<div id="footer">
-			<hr width="865"/>
+			<hr width="865" />
+			<p:clock pattern="HH:mm:ss dd.MM.yyyy" mode="server"
+				style="background:white;" />
 			<p>
 				Projeto de Pesquisa 2016 - Appesca <br />
 			</p>

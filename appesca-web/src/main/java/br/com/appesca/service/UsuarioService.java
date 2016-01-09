@@ -39,4 +39,8 @@ public class UsuarioService {
     public List<Usuario> listAll() throws Exception {
         return usuarioRepository.listAll();
     }
+    
+    public void save(Usuario usr){
+    	usuarioRepository.save(usr);
+    }
 }

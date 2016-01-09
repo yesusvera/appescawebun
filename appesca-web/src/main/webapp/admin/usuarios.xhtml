@@ -9,6 +9,12 @@
 		<h1>Usuários</h1>
 		<h:form id="forms">
 			<p:dataTable var="usr" value="#{usuarioController.listaUsuarios}">
+				<p:column headerText="Foto">
+					<p:graphicImage cache="false" value="#{usuarioController.dynamicImage}"
+						 rendered="#{usr.imageGraphics != null}" width="75" height="55">
+						 <f:param name="image_id" value="#{usr.id}"/>
+					</p:graphicImage>
+				</p:column>
 				<p:column headerText="Nome" filterBy="#{usr.nome}" sortBy="#{usr.nome}">
 					<h:outputText value="#{usr.nome}" />
 				</p:column>
@@ -21,9 +27,14 @@
 				<p:column headerText="Perfil" filterBy="#{usr.perfil}" sortBy="#{usr.perfil}">
 					<h:outputText value="#{usr.perfil}" />
 				</p:column>
+				<p:column headerText="Ações">
+					<p:commandLink action="#{usuarioController.editar(usr)}">
+						<i class="fa fa-pencil-square-o"/>
+					</p:commandLink>
+				</p:column>
 			</p:dataTable>
 			<br/>
-			<p:commandButton value="Novo Usuário" action="cadastrarUsuario"/>
+			<p:commandButton value="Novo Usuário" action="#{usuarioController.cadastrarUsuario}"/>
 		</h:form>
 	</ui:define>
 </ui:composition>
