@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/defaultLogado.xhtml">
+	<ui:define name="content">
+		<h1>#{equipeController.equipe.id==null?"Criar":"Alterar"} Equipe</h1>
+		<h:form id="formularioCad">
+			<p:growl id="messages" showDetail="true" />
+			<h:panelGrid id="pnlCadastro" columns="3" columnClasses="titleCell">
+			
+				<h:outputLabel for="nome" value="Nome:" />
+                <h:inputText id="nome" value="#{equipeController.equipe.nome}" required="true" requiredMessage="O nome é obrigatório"/>
+                <h:message for="nome" errorClass="invalid" />
+                
+				<h:outputLabel for="descricao" value="Descrição:" />
+                <p:editor  value="#{equipeController.equipe.descricao}"></p:editor>
+                <h:message for="descricao" errorClass="invalid" />
+                
+			</h:panelGrid>
+			<h:panelGrid id="pnlSelecaoMembrosEquipe" columns="3" columnClasses="titleCell">
+				<p:fieldset id="availableCarsField" legend="Usuários disponíveis">
+			        <p:dataGrid id="availableCars" var="usrTemp" value="#{equipeController.listaUsuarios}" columns="3" paginator="true"
+			         rows="4" 
+			         paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {NextPageLink} "
+	        		rowsPerPageTemplate="6,12,16">
+			            <p:panel id="pnl" header="#{usrTemp.login}" style="text-align:center">
+			                <h:panelGrid columns="1" style="width:100%">
+			                    <p:graphicImage cache="false" value="#{equipeController.dynamicImage}" 
+									 rendered="#{usrTemp.imageGraphics != null}" width="75" height="55">
+									 <f:param name="image_id" value="#{usrTemp.id}"/>
+								</p:graphicImage>
+								 <h:outputText value="#{usrTemp.nome}" />
+			                </h:panelGrid>
+			            </p:panel>
+			            <p:draggable for="pnl" revert="true" handle=".ui-panel-titlebar" stack=".ui-panel"/>
+			        </p:dataGrid>
+			    </p:fieldset>
+			    <p:commandLink>
+			    	<i class="fa fa-arrow-right fa-2x"/>
+			    </p:commandLink>
+			    <p:fieldset id="selectedCars" legend="Membros da equipe" style="margin-top:20px">
+		        <p:outputPanel id="dropArea">
+		            <h:outputText value="Arraste aqui os membros" rendered="#{empty equipeController.usuariosEscolhidos}" style="font-size:24px;" />
+		            <p:dataTable id="selectedCarsTable" var="usrTmpEscolhido" value="#{equipeController.usuariosEscolhidos}" rendered="#{not empty equipeController.usuariosEscolhidos}">
+		                <p:column headerText="Nome">
+		                    <h:outputText value="#{usrTmpEscolhido.nome}" />
+		                </p:column>
+		                <p:column headerText="Login">
+		                    <h:outputText value="#{usrTmpEscolhido.login}" />
+		                </p:column>
+		                <p:column>
+		                  <p:commandLink update="formularioCad" immediate="true" action="#{equipeController.removerSelecionado(usrTmpEscolhido)}">
+							<i class="fa fa-trash fa-2x"/>
+							</p:commandLink>
+		                </p:column>
+		            </p:dataTable>
+		        </p:outputPanel>
+			    </p:fieldset>
+		    </h:panelGrid>
+		 
+		    <p:droppable for="selectedCars" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableCars"  onDrop="handleDrop">
+		        <p:ajax listener="#{equipeController.onUsuarioDrop}" update="dropArea availableCars" />
+		    </p:droppable>
+		    
+			<hr/>
+			 <h:commandButton id="btnSalvar"
+                        action="#{equipeController.salvar()}"
+                        value="Salvar"/>
+			 <h:commandButton id="btnCancelar"
+                        action="equipes"
+                        immediate="true"
+                        value="Cancelar"/>
+		</h:form>
+	</ui:define>
+</ui:composition>

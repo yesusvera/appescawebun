@@ -27,6 +27,13 @@
 	<link rel="stylesheet"
 		href="#{request.contextPath}/resources/font-awesome-4.5.0/css/font-awesome.min.css"></link>
 	<h:outputStylesheet name="css/screen.css" />
+	<script type="text/javascript">
+	   function handleDrop(event, ui) {
+	       var droppedCar = ui.draggable;
+	
+	       droppedCar.fadeOut('fast');
+	   }
+	</script>
 </h:head>
 <h:body>
 	<h:form style="border:0px;">
@@ -34,7 +41,7 @@
 	</h:form>
 	<div id="cardNoBorder">
 		<hr size="35" width="865"
-			style="border-top: 1px solid #76b326; color: #76b326; background: #76b326; margin-top: 0" />
+			style="border-top: 1px solid #2d86c1; color: #2d86c1; background: #2d86c1; margin-top: 0" />
 		<h:graphicImage value="/resources/gfx/topoAppesca.png" />
 	</div>
 
@@ -89,6 +96,7 @@
 				Projeto de Pesquisa 2016 - Appesca <br />
 			</p>
 		</div>
+		<h:graphicImage value="/resources/gfx/onda_footer.png"  width="865" style="margin-bottom:-20px"/>
 	</div>
 </h:body>
 </html>

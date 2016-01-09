@@ -69,6 +69,7 @@ public class UsuarioController implements Serializable {
     
     public String editar(Usuario usr){
     	this.usuario = usr;
+    	this.confirmacaoSenha = usr.getSenha();
     	return "cadastrarUsuario";
     }
     

@@ -7,8 +7,29 @@
     template="/WEB-INF/templates/defaultLogado.xhtml">
     <ui:define name="content">
         <h1>Equipes</h1>
-
-        <h:form id="formEquipe">
-        </h:form>
+       <h:form id="formEquipe">
+			<p:dataTable var="equipe" value="#{equipeController.listaEquipes}">
+				
+				<p:column headerText="Nome" filterBy="#{equipe.nome}" sortBy="#{equipe.nome}">
+					<h:outputText value="#{equipe.nome}" />
+				</p:column>
+				<p:column headerText="Descrição" filterBy="#{equipe.descricao}" sortBy="#{equipe.descricao}">
+					<h:outputText value="#{equipe.descricao}" />
+				</p:column>
+				<p:column headerText="Coordenador" filterBy="#{equipe.idCoordenador}" sortBy="#{equipe.idCoordenador}">
+					<h:outputText value="#{equipe.idCoordenador}" />
+				</p:column>
+				<p:column headerText="Data" filterBy="#{equipe.data}" sortBy="#{equipe.data}">
+					<h:outputText value="#{equipe.data}" />
+				</p:column>
+				<p:column headerText="Ações">
+					<p:commandLink action="#{equipeController.editar(equipe)}">
+						<i class="fa fa-pencil-square-o"/>
+					</p:commandLink>
+				</p:column>
+			</p:dataTable>
+			<br/>
+			<h:commandButton value="Criar Equipe" action="#{equipeController.cadastrarEquipe}"/>
+		</h:form>
     </ui:define>
 </ui:composition>
