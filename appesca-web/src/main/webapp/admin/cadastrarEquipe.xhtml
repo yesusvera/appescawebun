@@ -17,11 +17,14 @@
 				<h:outputLabel for="descricao" value="Descrição:" />
                 <p:editor  value="#{equipeController.equipe.descricao}"></p:editor>
                 <h:message for="descricao" errorClass="invalid" />
-			</h:panelGrid>
-			<br/>
-			<center>
-				<h:panelGrid id="pnlSelecaoMembrosEquipe" columns="3" columnClasses="titleCell">
-					<p:fieldset id="availableCarsField" legend="Usuários disponíveis" style="font-size:x-small">
+                
+               <h:outputLabel for="coordenador" value="Coordenador:" />
+               <h:outputLabel for="coordenador" value="xxx" />
+               <h:message for="descricao" errorClass="invalid" />
+               
+               <h:outputLabel for="pnlSelecaoMembrosEquipe" value="Membros:" />
+               <h:panelGrid id="pnlSelecaoMembrosEquipe" columns="3" columnClasses="titleCell">
+               <p:fieldset id="availableCarsField" legend="Usuários disponíveis" style="font-size:x-small">
 				        <p:dataGrid id="availableCars" var="usrTemp" value="#{equipeController.listaUsuarios}" columns="2" paginator="true"
 				         rows="6" 
 				         paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {NextPageLink} "
@@ -64,10 +67,15 @@
 			        </p:outputPanel>
 				    </p:fieldset>
 			    </h:panelGrid>
-			 
+
 			    <p:droppable for="selectedCars" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableCars"  onDrop="handleDrop">
 			        <p:ajax listener="#{equipeController.onUsuarioDrop}" update="dropArea availableCars" />
 			    </p:droppable>
+			</h:panelGrid>
+			
+			<center>
+				
+				
 			    
 		    </center>
 		    <br/>
