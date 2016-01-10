@@ -12,53 +12,48 @@
 
 			<p:panel id="idEntrevistado" header="Identificação do entrevistado"
 				footer="" style="margin-bottom:20px; width:800px">
-				<h:panelGrid columns="5" cellpadding="10">
+				<h:panelGrid columns="4" cellpadding="10">
 					<h:outputText value="Nome completo: " />
-					<p:inputText
-						value="#{formularioController.formulario.entrevistado.nomeCompleto}"
-						disabled="true" />
+					<p:inplace id="nomeCompleto">
+						<p:inputText
+							value="#{formularioController.formulario.entrevistado.nomeCompleto}" />
+					</p:inplace>
+
 
 					<h:outputText value="Apelido: " />
-					<p:inputText
-						value="#{formularioController.formulario.entrevistado.apelido}"
-						disabled="true" />
-					<br />
+					<p:inplace id="apelido">
+						<p:inputText
+							value="#{formularioController.formulario.entrevistado.apelido}" />
+					</p:inplace>
+
+				
 
 					<h:outputText value="UF: " />
-					<p:inputText
-						value="#{formularioController.formulario.entrevistado.municipio.uf}"
-						disabled="true" />
+					<p:inplace id="uf">
+						<p:inputText
+							value="#{formularioController.formulario.entrevistado.municipio.uf}" />
+					</p:inplace>
+
 
 					<h:outputText value="Municipio: " />
-					<p:inputText
-						value="#{formularioController.formulario.entrevistado.municipio.municipio}"
-						disabled="true" />
+					<p:inplace id="municipio">
+						<p:inputText
+							value="#{formularioController.formulario.entrevistado.municipio.municipio}" />
+					</p:inplace>
+
 				</h:panelGrid>
 			</p:panel>
 
 			<p:panel id="q1" header="Questão 1" footer=""
 				style="margin-bottom:20px">
 				<h:panelGrid columns="4" cellpadding="10">
-					<h:outputText value="Nome completo: " />
-					<p:inputText
-						value="#{formularioController.formulario.entrevistado.nomeCompleto}"
-						disabled="true" />
+					<h:outputText value="Quantas pessoas moram em sua casa? " />
+					<p:inplace id="qtdPessoas">
+						<p:inputText
+							value="5" />
+					</p:inplace>
 
 
-					<h:outputText value="Apelido: " />
-					<p:inputText
-						value="#{formularioController.formulario.entrevistado.apelido}"
-						disabled="true" />
-
-					<h:outputText value="UF: " />
-					<p:inputText
-						value="#{formularioController.formulario.entrevistado.municipio.uf}"
-						disabled="true" />
-
-					<h:outputText value="Municipio: " />
-					<p:inputText
-						value="#{formularioController.formulario.entrevistado.municipio.municipio}"
-						disabled="true" />
 				</h:panelGrid>
 			</p:panel>
 
