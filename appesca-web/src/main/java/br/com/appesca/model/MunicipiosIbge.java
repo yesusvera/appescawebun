@@ -4,6 +4,7 @@ package br.com.appesca.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -18,6 +19,7 @@ public class MunicipiosIbge implements java.io.Serializable {
 	private int codigo;
 	private String municipio;
 	private String uf;
+	private IdentEntrevistado entrevistado;
 
 	public MunicipiosIbge() {
 	}
@@ -59,6 +61,15 @@ public class MunicipiosIbge implements java.io.Serializable {
 
 	public void setUf(String uf) {
 		this.uf = uf;
+	}
+	
+	@OneToOne(mappedBy = "municipio")
+	public IdentEntrevistado getEntrevistado() {
+		return entrevistado;
+	}
+
+	public void setEntrevistado(IdentEntrevistado entrevistado) {
+		this.entrevistado = entrevistado;
 	}
 
 }

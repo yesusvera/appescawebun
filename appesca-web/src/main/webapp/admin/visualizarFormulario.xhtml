@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/defaultLogado.xhtml">
+	<ui:define name="content">
+
+		<h:form id="visualizarForm">
+			<p:growl id="messages" showDetail="true" />
+
+			<p:panel id="idEntrevistado" header="Identificação do entrevistado"
+				footer="" style="margin-bottom:20px; width:800px">
+				<h:panelGrid columns="5" cellpadding="10">
+					<h:outputText value="Nome completo: " />
+					<p:inputText
+						value="#{formularioController.formulario.entrevistado.nomeCompleto}"
+						disabled="true" />
+
+					<h:outputText value="Apelido: " />
+					<p:inputText
+						value="#{formularioController.formulario.entrevistado.apelido}"
+						disabled="true" />
+					<br />
+
+					<h:outputText value="UF: " />
+					<p:inputText
+						value="#{formularioController.formulario.entrevistado.municipio.uf}"
+						disabled="true" />
+
+					<h:outputText value="Municipio: " />
+					<p:inputText
+						value="#{formularioController.formulario.entrevistado.municipio.municipio}"
+						disabled="true" />
+				</h:panelGrid>
+			</p:panel>
+
+			<p:panel id="q1" header="Questão 1" footer=""
+				style="margin-bottom:20px">
+				<h:panelGrid columns="4" cellpadding="10">
+					<h:outputText value="Nome completo: " />
+					<p:inputText
+						value="#{formularioController.formulario.entrevistado.nomeCompleto}"
+						disabled="true" />
+
+
+					<h:outputText value="Apelido: " />
+					<p:inputText
+						value="#{formularioController.formulario.entrevistado.apelido}"
+						disabled="true" />
+
+					<h:outputText value="UF: " />
+					<p:inputText
+						value="#{formularioController.formulario.entrevistado.municipio.uf}"
+						disabled="true" />
+
+					<h:outputText value="Municipio: " />
+					<p:inputText
+						value="#{formularioController.formulario.entrevistado.municipio.municipio}"
+						disabled="true" />
+				</h:panelGrid>
+			</p:panel>
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>

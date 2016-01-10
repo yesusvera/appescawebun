@@ -2,15 +2,18 @@ package br.com.appesca.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 @Entity
@@ -24,6 +27,8 @@ public class Formulario implements java.io.Serializable {
 	private int idTipoFormulario;
 	private int idUsuario;
 	private Date dataAplicacao;
+	
+	private IdentEntrevistado entrevistado;
 
 	public Formulario() {
 	}
@@ -37,7 +42,6 @@ public class Formulario implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-
 	@Column(name = "id", unique = true, nullable = false)
 	public Integer getId() {
 		return this.id;
@@ -82,6 +86,26 @@ public class Formulario implements java.io.Serializable {
 
 	public void setDataAplicacao(Date dataAplicacao) {
 		this.dataAplicacao = dataAplicacao;
+	}
+	
+	@Transient
+	public String getData(){
+		SimpleDateFormat sd = new SimpleDateFormat("dd/MM/yyyy");
+		return sd.format(getDataAplicacao());
+	}
+	@Transient
+	public String getHora(){
+		SimpleDateFormat sd = new SimpleDateFormat("HH:mm:ss");
+		return sd.format(getDataAplicacao());
+	}
+
+	@OneToOne(mappedBy = "formulario")
+	public IdentEntrevistado getEntrevistado() {
+		return entrevistado;
+	}
+
+	public void setEntrevistado(IdentEntrevistado identEntrevistado) {
+		this.entrevistado = identEntrevistado;
 	}
 
 }
