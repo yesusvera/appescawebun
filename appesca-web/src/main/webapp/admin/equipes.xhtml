@@ -13,11 +13,11 @@
 				<p:column headerText="Nome" filterBy="#{equipe.nome}" sortBy="#{equipe.nome}">
 					<h:outputText value="#{equipe.nome}" />
 				</p:column>
-				<p:column headerText="Descrição" filterBy="#{equipe.descricao}" sortBy="#{equipe.descricao}">
+				<!-- <p:column headerText="Descrição" filterBy="#{equipe.descricao}" sortBy="#{equipe.descricao}">
 					<h:outputText value="#{equipe.descricao}" />
-				</p:column>
-				<p:column headerText="Coordenador" filterBy="#{equipe.idCoordenador}" sortBy="#{equipe.idCoordenador}">
-					<h:outputText value="#{equipe.idCoordenador}" />
+				</p:column> -->
+				<p:column rendered="#{equipe.coordenador != null}" headerText="Coordenador" filterBy="#{equipe.coordenador.nome}" sortBy="#{equipe.coordenador.nome}">
+					<h:outputText value="#{equipe.coordenador.nome}" />
 				</p:column>
 				<p:column headerText="Data" filterBy="#{equipe.data}" sortBy="#{equipe.data}">
 					<h:outputText value="#{equipe.data}" />

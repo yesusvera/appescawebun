@@ -22,9 +22,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 
 import br.com.appesca.model.Equipe;
 
@@ -38,38 +35,19 @@ public class EquipeRepository {
         return em.find(Equipe.class, id);
     }
     
-    public void save(Equipe usr){
-    	if(usr.getId()==null){
-    		em.persist(usr);
-    	}else{
-    		em.merge(usr);
-    	}
+    public void save(Equipe equipe){
+//    	if(equipe.getId()==null){
+//    		em.persist(equipe);
+//    	}else{
+    		em.merge(equipe);
+//    	}
     }
     
     @SuppressWarnings("unchecked")
 	public List<Equipe> listAll(){
-    	 Query query = em.createQuery("SELECT u FROM Equipe u");
+    	 Query query = em.createQuery("SELECT e FROM Equipe e");
     	 return (List<Equipe>) query.getResultList();
     }
     
-    public Equipe findByLoginSenha(String login, String senha) {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Equipe> criteria = cb.createQuery(Equipe.class);
-        Root<Equipe> equipe = criteria.from(Equipe.class);
-        // Swap criteria statements if you would like to try out type-safe criteria queries, a new
-        // feature in JPA 2.0
-        // criteria.select(member).where(cb.equal(member.get(Member_.name), email));
-        criteria.select(equipe).where(
-        		cb.and(
-        				cb.equal(equipe.get("login"), login),
-        				cb.equal(equipe.get("senha"), senha)
-        		)
-        );
-        try{
-        	return em.createQuery(criteria).getSingleResult();
-        }catch(javax.persistence.NoResultException nr){
-        	return null;
-        }
-    }
 
 }
