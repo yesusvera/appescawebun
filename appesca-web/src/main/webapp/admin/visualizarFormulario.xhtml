@@ -8,10 +8,10 @@
 	<ui:define name="content">
 
 		<h:form id="visualizarForm">
-			<p:growl id="messages" showDetail="true" />
+			<p:growl id="msgs" showDetail="true" />
 
 			<p:panel id="idEntrevistado" header="Identificação do entrevistado"
-				footer="" style="margin-bottom:20px; width:800px">
+				style="margin-bottom:20px; width:800px">
 				<h:panelGrid columns="4" cellpadding="10">
 					<h:outputText value="Nome completo: " />
 					<p:inplace id="nomeCompleto">
@@ -26,7 +26,7 @@
 							value="#{formularioController.formulario.entrevistado.apelido}" />
 					</p:inplace>
 
-				
+
 
 					<h:outputText value="UF: " />
 					<p:inplace id="uf">
@@ -44,17 +44,52 @@
 				</h:panelGrid>
 			</p:panel>
 
-			<p:panel id="q1" header="Questão 1" footer=""
-				style="margin-bottom:20px">
-				<h:panelGrid columns="4" cellpadding="10">
-					<h:outputText value="Quantas pessoas moram em sua casa? " />
-					<p:inplace id="qtdPessoas">
-						<p:inputText
-							value="5" />
-					</p:inplace>
+			<p:panel id="q1" header="Questão 1" toggleable="true"
+				closable="false" toggleSpeed="500" closeSpeed="500"
+				widgetVar="panel" style="margin-bottom:20px">
 
+				<p:ajax event="toggle" listener="#{panelView.onToggle}"
+					update="msgs" />
+
+				<h:panelGrid columns="2" cellpadding="10">
+				
+					<h:outputText id="q1p1" value="Quantas pessoas moram em sua casa? " />
+					
+					<p:inputText value="5" size="1" style="text-align: center;" />
+					
+					<p:dataTable var="" value="">
+					
+						<p:column id="q1p2" headerText="Identificação (Primeiro nome)" style="text-align: center;">
+							<h:outputText value="Jonathan" />
+						</p:column>
+
+						<p:column id="q1p3" headerText="Sexo" style="text-align: center;">
+							<h:outputText value="M" />
+						</p:column>
+
+						<p:column id="q1p4" headerText="Idade" style="text-align: center;">
+							<h:outputText value="31" />
+						</p:column>
+
+						<p:column id="q1p5" headerText="Parentesco" style="text-align: center;">
+							<h:outputText value="Pai" />
+						</p:column>
+						
+						<p:column id="q1p6" headerText="Ja frequentou a escola?" style="text-align: center;">
+							<h:outputText value="S" />
+						</p:column>
+						
+						<p:column id="q1p7" headerText="Até que ano?" style="text-align: center;">
+							<h:outputText value="2" />
+						</p:column>
+						
+						<p:column id="q1p8" headerText="Atualmente estuda?" style="text-align: center;">
+							<h:outputText value="Não" />
+						</p:column>
+					</p:dataTable>
 
 				</h:panelGrid>
+
 			</p:panel>
 
 

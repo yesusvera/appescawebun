@@ -19,7 +19,6 @@ public class IdentEntrevistado implements java.io.Serializable {
 	private Integer id;
 	private String nomeCompleto;
 	private String apelido;
-	private Integer idMunicipio;
 	private String comunidade;
 	private Boolean possuiCertNasc;
 	private Boolean possuiCartIdent;

@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,20 +19,11 @@ public class Questao implements java.io.Serializable {
 	private Integer id;
 	private String titulo;
 	private Integer ordem;
-	private int idFormulario;
+	private Formulario formulario;
 
 	public Questao() {
 	}
 
-	public Questao(int idFormulario) {
-		this.idFormulario = idFormulario;
-	}
-
-	public Questao(String titulo, Integer ordem, int idFormulario) {
-		this.titulo = titulo;
-		this.ordem = ordem;
-		this.idFormulario = idFormulario;
-	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -62,13 +55,14 @@ public class Questao implements java.io.Serializable {
 		this.ordem = ordem;
 	}
 
-	@Column(name = "id_formulario", nullable = false)
-	public int getIdFormulario() {
-		return this.idFormulario;
+	@ManyToOne
+	@JoinColumn(name="id_formulario")
+	public Formulario getFormulario() {
+		return this.formulario;
 	}
 
-	public void setIdFormulario(int idFormulario) {
-		this.idFormulario = idFormulario;
+	public void setFormulario(Formulario formulario) {
+		this.formulario = formulario;
 	}
 
 }
