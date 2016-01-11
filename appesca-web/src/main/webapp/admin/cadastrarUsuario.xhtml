@@ -11,18 +11,18 @@
 			<p:growl id="messages" showDetail="true" />
 			<p:fieldset legend="Capturar Foto" rendered="#{usuarioController.usuario.imagem == null}"  toggleable="true" toggleSpeed="500" height="90">
 		        <h:panelGrid id="capturaFoto" columns="2">
-					<p:photoCam widgetVar="pc" listener="#{usuarioController.oncapture}" update="formularioCad" immediate="true" width="300" />
+					<p:photoCam widgetVar="pc" listener="#{usuarioController.oncapture}" update="formularioCad" immediate="true" width="300"  />
 					<p:commandLink  onclick="PF('pc').capture()">
-						<i class="fa fa-camera fa-2x"></i>
+						<i class="fa fa-camera"></i>
 					</p:commandLink>
 				</h:panelGrid>
 		    </p:fieldset>
 		    <br/>
 			<h:panelGrid id="pnlCadastro" columns="3" columnClasses="titleCell">
 				<h:outputLabel value="Foto capturada:" rendered="#{usuarioController.usuario.imagem != null}"  />
-		        <p:graphicImage cache="false" value="#{usuarioController.usuario.imageGraphics}" rendered="#{usuarioController.usuario.imageGraphics != null}" width="150" height="110"/>
+		        <p:graphicImage style="border-radius: 55px;" cache="false" value="#{usuarioController.usuario.imageGraphics}" rendered="#{usuarioController.usuario.imageGraphics != null}" width="150" height="110"/>
 		        <p:commandLink action="#{usuarioController.tirarOutra}" immediate="true" update="formularioCad" rendered="#{usuarioController.usuario.imagem != null}">
-		       	 <i class="fa fa-camera fa-2x"/>
+		       	 <i class="fa fa-camera"/>
 		        </p:commandLink>
 			
 				<h:outputLabel for="nome" value="Nome:" />
@@ -55,7 +55,7 @@
                 
                 <h:outputLabel for="perfil" value="Perfil:" />
                 <p:selectOneMenu id="perfil" value="#{usuarioController.usuario.perfil}" style="width:125px">
-		             <f:selectItems value="#{usuarioController.listaPerfis()}" />
+		             <f:selectItems value="#{usuarioController.listaPerfis()}"  />
 		        </p:selectOneMenu>
                 <h:message for="perfil" errorClass="invalid" />
 			</h:panelGrid>

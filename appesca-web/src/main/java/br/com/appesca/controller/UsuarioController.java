@@ -1,6 +1,7 @@
 package br.com.appesca.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -98,11 +99,13 @@ public class UsuarioController implements Serializable {
 		 return new DefaultStreamedContent();
 	 }
 
-    public SelectItem[] listaPerfis() {
-        SelectItem[] items = new SelectItem[PerfilEnum.values().length];
-        int i = 0;
+    public List<SelectItem> listaPerfis() {
+    	List<SelectItem> items = new ArrayList<>();
         for(PerfilEnum g: PerfilEnum.values()) {
-          items[i++] = new SelectItem(g, g.getDescricao());
+          if(g.equals(PerfilEnum.ADMINISTRADOR) && !identidade.eAdministrador()){
+        	  continue;
+          }
+          items.add(new SelectItem(g, g.getDescricao()));
         }
         return items;
       }

@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Model;
 
+import br.com.appesca.enums.PerfilEnum;
+
 @Model
 @SessionScoped
 public class Identidade implements Serializable{
@@ -22,12 +24,29 @@ public class Identidade implements Serializable{
 	}
 	
 	public String getLabelUserButton(){
-		
 		if(usuarioLogado!=null){
 			return usuarioLogado.getNome() + "(" + usuarioLogado.getPerfil() + ")";
 		}
-		
 		return "";
 	}
+	
+	public boolean eAdministrador(){
+		if(usuarioLogado==null) return false;
+		return usuarioLogado.getPerfil().equals(PerfilEnum.ADMINISTRADOR);
+	}
+	
+	public boolean eCoordenador(){
+		if(usuarioLogado==null) return false;
+		return usuarioLogado.getPerfil().equals(PerfilEnum.COORDENADOR);
+	}
 
+	public boolean eDegravador(){
+		if(usuarioLogado==null) return false;
+		return usuarioLogado.getPerfil().equals(PerfilEnum.DEGRAVADOR);
+	}
+
+	public boolean ePesquisador(){
+		if(usuarioLogado==null) return false;
+		return usuarioLogado.getPerfil().equals(PerfilEnum.PESQUISADOR);
+	}
 }

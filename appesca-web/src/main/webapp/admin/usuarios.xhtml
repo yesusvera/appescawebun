@@ -8,33 +8,35 @@
 	<ui:define name="content">
 		<h1>Usuários</h1>
 		<h:form id="forms">
-			<p:dataTable var="usr" value="#{usuarioController.listaUsuarios}">
-				<p:column headerText="Foto">
+			<p:dataTable var="usr" value="#{usuarioController.listaUsuarios}" style=" text-align: center;">
+				<p:column  width="150" headerText="Nome" filterBy="#{usr.nome}" sortBy="#{usr.nome}">
 					<p:graphicImage cache="false" value="#{usuarioController.dynamicImage}"
-						 rendered="#{usr.imageGraphics != null}" width="75" height="55">
+						style="border-radius: 55px;" 
+						 rendered="#{usr.imageGraphics != null}" width="112" height="82">
 						 <f:param name="image_id" value="#{usr.id}"/>
 					</p:graphicImage>
-				</p:column>
-				<p:column headerText="Nome" filterBy="#{usr.nome}" sortBy="#{usr.nome}">
+					<br/>
 					<h:outputText value="#{usr.nome}" />
 				</p:column>
-				<p:column headerText="Login" filterBy="#{usr.login}" sortBy="#{usr.login}">
+				<p:column width="110" headerText="Login" filterBy="#{usr.login}" sortBy="#{usr.login}">
 					<h:outputText value="#{usr.login}" />
 				</p:column>
-				<p:column headerText="Endereço" filterBy="#{usr.endereco}" sortBy="#{usr.endereco}">
+				<p:column  headerText="Endereço" filterBy="#{usr.endereco}" sortBy="#{usr.endereco}">
 					<h:outputText value="#{usr.endereco}" />
 				</p:column>
-				<p:column headerText="Perfil" filterBy="#{usr.perfil}" sortBy="#{usr.perfil}">
-					<h:outputText value="#{usr.perfil}" />
+				<p:column width="110" headerText="Perfil" filterBy="#{usr.perfil}" sortBy="#{usr.perfil}">
+					<i class="fa #{usr.perfil.fontAweSomeIcon}"/> 
+					<br/>
+					<h:outputText value="#{usr.perfil.descricao}" />
 				</p:column>
-				<p:column headerText="Ações">
-					<p:commandLink action="#{usuarioController.editar(usr)}">
+				<p:column headerText="Ações" width="40">
+					<p:commandLink action="#{usuarioController.editar(usr)}" rendered="#{identidade.eAdministrador() or identidade.eCoordenador() and usr.perfil.valor ge identidade.usuarioLogado.perfil.valor}">
 						<i class="fa fa-pencil-square-o"/>
 					</p:commandLink>
 				</p:column>
 			</p:dataTable>
 			<br/>
-			<p:commandButton value="Novo Usuário" action="#{usuarioController.cadastrarUsuario}"/>
+			<p:commandButton value="Novo Usuário" action="#{usuarioController.cadastrarUsuario}" rendered="#{identidade.eAdministrador() or identidade.eCoordenador()}"/>
 		</h:form>
 	</ui:define>
 </ui:composition>

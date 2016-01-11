@@ -11,7 +11,7 @@
 			<p:growl id="messages" showDetail="true" />
 			<h:panelGrid id="pnlCadastro" columns="3" columnClasses="titleCell">
 				<h:outputLabel for="nome" value="Nome:" />
-                <h:inputText id="nome" value="#{equipeController.equipe.nome}" required="true" requiredMessage="O nome é obrigatório" size="100"/>
+                <h:inputText id="nome" value="#{equipeController.equipe.nome}" required="true" requiredMessage="O nome é obrigatório" size="90"/>
                 <h:message for="nome" errorClass="invalid" />
                 
 				<h:outputLabel for="descricao" value="Descrição:" />
@@ -19,7 +19,7 @@
                 <h:message for="descricao" errorClass="invalid" />
                 
                <h:outputLabel for="coordenador" value="Coordenador:" />
-               <h:outputLabel for="coordenador" value="xxx" />
+               <h:outputLabel for="coordenador" value="#{identidade.usuarioLogado.nome}" />
                <h:message for="descricao" errorClass="invalid" />
                
                <h:outputLabel for="pnlSelecaoMembrosEquipe" value="Membros:" />
