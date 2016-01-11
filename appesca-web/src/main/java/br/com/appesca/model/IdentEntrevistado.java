@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -34,45 +36,14 @@ public class IdentEntrevistado implements java.io.Serializable {
 	private Integer estCivil;
 	private Integer escolaridade;
 	private Boolean responsUnFam;
-	private int idFormulario;
+	private Formulario formulario;
+	private MunicipiosIbge municipio;
 
 	public IdentEntrevistado() {
 	}
 
-	public IdentEntrevistado(int idFormulario) {
-		this.idFormulario = idFormulario;
-	}
-
-	public IdentEntrevistado(String nomeCompleto, String apelido, Integer idMunicipio, String comunidade,
-			Boolean possuiCertNasc, Boolean possuiCartIdent, Boolean possuiCpf, Boolean possuiCartTrab,
-			Boolean possuiRgp, Boolean possuiDap, String possuiOutro, Integer idade, String sexo, String telefone,
-			Integer acessoComunidade, Integer distMunProx, Integer estCivil, Integer escolaridade, Boolean responsUnFam,
-			int idFormulario) {
-		this.nomeCompleto = nomeCompleto;
-		this.apelido = apelido;
-		this.idMunicipio = idMunicipio;
-		this.comunidade = comunidade;
-		this.possuiCertNasc = possuiCertNasc;
-		this.possuiCartIdent = possuiCartIdent;
-		this.possuiCpf = possuiCpf;
-		this.possuiCartTrab = possuiCartTrab;
-		this.possuiRgp = possuiRgp;
-		this.possuiDap = possuiDap;
-		this.possuiOutro = possuiOutro;
-		this.idade = idade;
-		this.sexo = sexo;
-		this.telefone = telefone;
-		this.acessoComunidade = acessoComunidade;
-		this.distMunProx = distMunProx;
-		this.estCivil = estCivil;
-		this.escolaridade = escolaridade;
-		this.responsUnFam = responsUnFam;
-		this.idFormulario = idFormulario;
-	}
-
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-
 	@Column(name = "id", unique = true, nullable = false)
 	public Integer getId() {
 		return this.id;
@@ -98,15 +69,6 @@ public class IdentEntrevistado implements java.io.Serializable {
 
 	public void setApelido(String apelido) {
 		this.apelido = apelido;
-	}
-
-	@Column(name = "id_municipio")
-	public Integer getIdMunicipio() {
-		return this.idMunicipio;
-	}
-
-	public void setIdMunicipio(Integer idMunicipio) {
-		this.idMunicipio = idMunicipio;
 	}
 
 	@Column(name = "comunidade", length = 45)
@@ -253,13 +215,27 @@ public class IdentEntrevistado implements java.io.Serializable {
 		this.responsUnFam = responsUnFam;
 	}
 
-	@Column(name = "id_formulario", nullable = false)
-	public int getIdFormulario() {
-		return this.idFormulario;
+
+	@OneToOne
+	@JoinColumn(name="id_formulario")
+	public Formulario getFormulario() {
+		return this.formulario;
 	}
 
-	public void setIdFormulario(int idFormulario) {
-		this.idFormulario = idFormulario;
+	public void setFormulario(Formulario formulario) {
+		this.formulario = formulario;
 	}
+
+	@OneToOne
+	@JoinColumn(name="id_municipio")
+	public MunicipiosIbge getMunicipio() {
+		return municipio;
+	}
+
+	public void setMunicipio(MunicipiosIbge municipio) {
+		this.municipio = municipio;
+	}
+
+
 
 }

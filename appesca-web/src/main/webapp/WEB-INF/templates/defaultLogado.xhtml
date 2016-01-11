@@ -47,51 +47,37 @@
 
 	<div id="cardNoBorder">
 		<h:form>
-			<p:menubar style="background:white;">
-				<p:submenu label="Cadastros" icon="ui-icon-document">
-					<p:menuitem value="Equipes" url="/admin/equipes.jsf" />
-					<p:menuitem value="Usuários" url="/admin/usuarios.jsf" />
-				</p:submenu>
-				<p:submenu label="Formulários de pesquisa" icon="ui-icon-pencil">
-					<p:menuitem value="Camarão e Branco" url="#" />
-					<p:menuitem value="Camarão e Caranguejo" url="#" />
-					<p:menuitem value="Camarão Regional" url="#" />
-				</p:submenu>
-				<f:facet name="options">
-					<p:commandButton value="Sair" action="#{loginController.logout()}"
-						icon="ui-icon-extlink" />
-				</f:facet>
-			</p:menubar>
-			<p:panelGrid columns="2" layout="grid">
-				<p:panel>
-					<h:commandLink
-						rendered="#{identidade.usuarioLogado.perfil.valor==0}">
-						<i class="fa fa-user-secret"></i>
-					</h:commandLink>
-					<h:commandLink
-						rendered="#{identidade.usuarioLogado.perfil.valor==1}">
-						<i class="fa fa-users"></i>
-					</h:commandLink>
-					<h:commandLink
-						rendered="#{identidade.usuarioLogado.perfil.valor==2}">
-						<i class="fa fa-file-audio-o"></i>
-					</h:commandLink>
-					<h:commandLink
-						rendered="#{identidade.usuarioLogado.perfil.valor==3}">
-						<i class="fa fa-street-view"></i>
-					</h:commandLink>
+		<p:menubar style="background:white;">
+			<p:submenu label="Cadastros" icon="ui-icon-document">
+				<p:menuitem value="Equipes" url="/admin/equipes.jsf" />
+				<p:menuitem value="Usuários" url="/admin/usuarios.jsf" />
+			</p:submenu>
+			<p:submenu label="Formulários de pesquisa" icon="ui-icon-pencil">
+				<p:menuitem value="Camarão e Branco" url="#" />
+				<p:menuitem value="Camarão e Caranguejo" url="#" />
+				<p:menuitem value="Camarão Regional" url="/admin/formCamaraoRegional.jsf" />
+			</p:submenu>
+			<f:facet name="options">
+				<p:commandButton value="Sair" action="#{loginController.logout()}"
+					icon="ui-icon-extlink" />
+			</f:facet>
+		</p:menubar>
+		<br />
+		<h:commandLink rendered="#{identidade.usuarioLogado.perfil.valor==0}">
+			<i class="fa fa-user-secret" ></i>
+		</h:commandLink>
+		<h:commandLink  rendered="#{identidade.usuarioLogado.perfil.valor==1}">
+			<i class="fa fa-users"></i>
+		</h:commandLink>
+		<h:commandLink rendered="#{identidade.usuarioLogado.perfil.valor==2}">
+			<i class="fa fa-file-audio-o"></i>
+		</h:commandLink>
+		<h:commandLink rendered="#{identidade.usuarioLogado.perfil.valor==3}">
+			<i class="fa fa-street-view"></i>
+		</h:commandLink>
 
-					<b>#{identidade.usuarioLogado.nome}</b>, você possui perfil <i><b>#{identidade.usuarioLogado.perfil.descricao}</b></i>
-				</p:panel>
-				<p:graphicImage cache="false"
-					value="#{usuarioController.dynamicImage}"
-					style="border-radius: 55px;"
-					rendered="#{identidade.usuarioLogado.imageGraphics != null}"
-					width="112" height="82">
-					<f:param name="image_id" value="#{identidade.usuarioLogado.id}" />
-				</p:graphicImage>
-
-			</p:panelGrid>
+		<b>#{identidade.usuarioLogado.nome}</b>, você possui perfil <i><b>#{identidade.usuarioLogado.perfil.descricao}</b></i>
+		&nbsp;&nbsp;&nbsp;
 		</h:form>
 	</div>
 	<div id="card">
@@ -105,10 +91,9 @@
 		<div id="footer">
 			<hr width="865" />
 			<p:clock pattern="HH:mm:ss dd.MM.yyyy" mode="server"
-				style="background:white;" />
-			<br /> <br /> Projeto de Pesquisa 2016 - Appesca <br />
-			<h:graphicImage value="/resources/gfx/onda_footer.png" width="865"
-				style="margin-bottom:-20px" />
+				style="background:white;" /><br/><br/>
+			Projeto de Pesquisa 2016 - Appesca <br />
+			<h:graphicImage value="/resources/gfx/onda_footer.png"  width="865" style="margin-bottom:-20px"/>
 		</div>
 	</div>
 </h:body>
