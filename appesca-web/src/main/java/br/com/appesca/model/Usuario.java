@@ -124,7 +124,7 @@ public class Usuario implements java.io.Serializable {
 	   }
 	 }
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "listaMembrosEquipe")
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "listaMembrosEquipe")
 	public List<Equipe> getListaEquipes() {
 		return listaEquipes;
 	}

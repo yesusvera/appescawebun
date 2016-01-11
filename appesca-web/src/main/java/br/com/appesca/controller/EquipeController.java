@@ -78,6 +78,8 @@ public class EquipeController implements Serializable {
 
     public String salvar() throws Exception{
     	equipe.setListaMembrosEquipe(usuariosEscolhidos);
+    	equipe.setCoordenador(identidade.getUsuarioLogado());
+    	
     	equipeService.save(equipe);
     	
     	usuariosEscolhidos = new ArrayList<>();

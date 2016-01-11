@@ -41,7 +41,7 @@ public class LoginController implements Serializable {
 
     public String logout() throws Exception{
     	 ((HttpSession)facesContext.getExternalContext().getSession(false)).invalidate();
-    	 return "visaoFormularios?faces-redirect=true";
+    	 return "formCamaraoRegional?faces-redirect=true";
     }
     
     public String login() throws Exception {
@@ -55,7 +55,7 @@ public class LoginController implements Serializable {
         		FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Autenticado", "Seja bem vindo.");
 	            facesContext.addMessage(null, m);
 	            
-	            return "/admin/visaoFormularios";
+	            return "/admin/formCamaraoRegional?faces-redirect=true";
         	}else{
         		FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário ou senha inválidos", "Usuário ou senha inválidos.");
  	            facesContext.addMessage(null, m);
