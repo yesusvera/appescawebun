@@ -4,11 +4,14 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -29,6 +32,10 @@ public class Formulario implements java.io.Serializable {
 	private Date dataAplicacao;
 	
 	private IdentEntrevistado entrevistado;
+	
+	List<Questao> listaQuestoes;
+
+
 
 	public Formulario() {
 	}
@@ -106,6 +113,15 @@ public class Formulario implements java.io.Serializable {
 
 	public void setEntrevistado(IdentEntrevistado identEntrevistado) {
 		this.entrevistado = identEntrevistado;
+	}
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "formulario")
+	public List<Questao> getListaQuestoes() {
+		return listaQuestoes;
+	}
+
+	public void setListaQuestoes(List<Questao> listaQuestoes) {
+		this.listaQuestoes = listaQuestoes;
 	}
 
 }

@@ -22,8 +22,13 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import br.com.appesca.model.Formulario;
+import br.com.appesca.model.Member;
+import br.com.appesca.model.Usuario;
 
 @ApplicationScoped
 public class FormularioRepository {
@@ -33,6 +38,18 @@ public class FormularioRepository {
 
     public Formulario findById(Long id) {
         return em.find(Formulario.class, id);
+    }
+    
+
+    public List<Formulario> findListByUsuario(Usuario usuario) {
+    	
+    	CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Formulario> criteria = cb.createQuery(Formulario.class);
+        Root<Formulario> formulario = criteria.from(Formulario.class);
+        criteria.select(formulario).where(cb.equal(formulario.get("idUsuario"), usuario.getId()));
+        return em.createQuery(criteria).getResultList();
+        
+//        return em.find(Formulario.class, id);
     }
     
     public void save(Formulario usr){
