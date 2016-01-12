@@ -22,7 +22,8 @@
 						 rendered="#{equipe.coordenador.imageGraphics != null}" width="56" height="41">
 						 <f:param name="image_id" value="#{equipe.coordenador.id}"/>
 					</p:graphicImage>
-					<h:outputText value="#{equipe.coordenador.nome}" /> 
+					<br/> 
+					<h:outputText value="#{equipe.coordenador.nome}" /><i class="fa #{equipe.coordenador.perfil.fontAweSomeIcon}"/> 
 					
 				</p:column> 
 				<p:column headerText="Data" filterBy="#{equipe.data}" sortBy="#{equipe.data}">

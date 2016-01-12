@@ -19,15 +19,31 @@
 		    </p:fieldset>
 		    <br/>
 			<h:panelGrid id="pnlCadastro" columns="3" columnClasses="titleCell">
-				<h:outputLabel value="Foto capturada:" rendered="#{usuarioController.usuario.imagem != null}"  />
-		        <p:graphicImage style="border-radius: 55px;" cache="false" value="#{usuarioController.usuario.imageGraphics}" rendered="#{usuarioController.usuario.imageGraphics != null}" width="150" height="110"/>
-		        <p:commandLink action="#{usuarioController.tirarOutra}" immediate="true" update="formularioCad" rendered="#{usuarioController.usuario.imagem != null}">
-		       	 <i class="fa fa-camera"/>
+				<h:outputLabel value="Foto capturada:" />
+				
+				<h:graphicImage value="/resources/gfx/sem_foto.png" 
+										width="60" 
+										height="60" 
+										rendered="#{usuarioController.usuario.imageGraphics == null}"/>
+		        <p:graphicImage style="border-radius: 55px;" 
+		        				cache="false" 
+		        				value="#{usuarioController.usuario.imageGraphics}" 
+		        				rendered="#{usuarioController.usuario.imageGraphics != null}" 
+		        				width="150" 
+		        				height="110"/>
+		      
+		        <p:commandLink action="#{usuarioController.tirarOutra}" immediate="true" update="formularioCad" disabled="#{usuarioController.usuario.imageGraphics == null}" >
+		       		 <i class="fa fa-camera"/>
 		        </p:commandLink>
 			
 				<h:outputLabel for="nome" value="Nome:" />
                 <h:inputText id="nome" value="#{usuarioController.usuario.nome}" required="true" requiredMessage="O nome é obrigatório"/>
                 <h:message for="nome" errorClass="invalid" />
+                
+                
+				<h:outputLabel for="email" value="Email:" />
+                <h:inputText id="email" value="#{usuarioController.usuario.email}" required="true" requiredMessage="O email é obrigatório"/>
+                <h:message for="email" errorClass="invalid" />
                 
 				<h:outputLabel for="endereco" value="Endereço:" />
                 <h:inputText id="endereco" value="#{usuarioController.usuario.endereco}" required="true" requiredMessage="O endereço é obrigatório"/>
