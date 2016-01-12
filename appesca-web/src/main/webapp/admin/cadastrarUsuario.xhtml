@@ -40,6 +40,11 @@
                 <h:inputText id="nome" value="#{usuarioController.usuario.nome}" required="true" requiredMessage="O nome é obrigatório"/>
                 <h:message for="nome" errorClass="invalid" />
                 
+                
+				<h:outputLabel for="email" value="Email:" />
+                <h:inputText id="email" value="#{usuarioController.usuario.email}" required="true" requiredMessage="O email é obrigatório"/>
+                <h:message for="email" errorClass="invalid" />
+                
 				<h:outputLabel for="endereco" value="Endereço:" />
                 <h:inputText id="endereco" value="#{usuarioController.usuario.endereco}" required="true" requiredMessage="O endereço é obrigatório"/>
                 <h:message for="endereco" errorClass="invalid" />

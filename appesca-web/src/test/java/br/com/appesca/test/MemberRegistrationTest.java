@@ -24,9 +24,11 @@ import javax.inject.Inject;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import br.com.appesca.model.Member;
-import br.com.appesca.service.MemberRegistration;
-import br.com.appesca.util.Resources;
+
+import br.org.unesco.appesca.service.MemberRegistration;
+import br.org.unesco.appesca.util.Resources;
+import br.org.unesco.model.Member;
+
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
