@@ -13,6 +13,9 @@ import javax.inject.Named;
 import br.org.unesco.appesca.service.FormularioService;
 import br.org.unesco.appesca.service.UsuarioService;
 import br.org.unesco.model.Formulario;
+import br.org.unesco.model.Pergunta;
+import br.org.unesco.model.Questao;
+import br.org.unesco.model.Resposta;
 
 @Model
 @SessionScoped
@@ -77,6 +80,29 @@ public class FormularioController implements Serializable {
 
 	public void setFormulario(Formulario formulario) {
 		this.formulario = formulario;
+	}
+	
+	public String getResposta(String chave){
+
+		String indices[] = chave.split("_");
+		String q = indices[0].substring(1);
+		String p = indices[1].substring(1);
+		String r = indices[2].substring(1);
+		
+		for (Questao questao : formulario.getListaQuestoes()) {
+			if(q.equals(questao.getOrdem().intValue())){
+				for (Pergunta pergunta : questao.getListaPerguntas()) {
+					if(p.equals(pergunta.getOrdem().intValue())){
+						for (Resposta resposta : pergunta.getListaRespostas()) {
+							if(r.equals(resposta.getOpcao().intValue())){
+								return resposta.getTexto();
+							}
+						}
+					}
+				}
+			}
+		}
+		return "";
 	}
 	
 }

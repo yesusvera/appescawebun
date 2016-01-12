@@ -52,16 +52,14 @@
 					update="msgs" />
 
 				<h:panelGrid columns="2" cellpadding="10">
-				
+
 					<h:outputText id="q1p1" value="Quantas pessoas moram em sua casa? " />
-					
-					<p:inputText value="5" size="1" style="text-align: center;" />
-					
-					<p:dataTable var="" value="">
-					
-						<p:column id="q1p2" headerText="Identificação (Primeiro nome)" style="text-align: center;">
-							<h:outputText value="Jonathan" />
-						</p:column>
+
+					<p:inputText
+						value="#{formularioController.formulario.listaQuestoes[0].listaPerguntas[0].listaRespostas[0].texto}"
+						size="1" style="text-align: center;" />
+
+					<p:dataTable var="respostas" value="" >
 
 						<p:column id="q1p3" headerText="Sexo" style="text-align: center;">
 							<h:outputText value="M" />
@@ -86,6 +84,7 @@
 						<p:column id="q1p8" headerText="Atualmente estuda?" style="text-align: center;">
 							<h:outputText value="Não" />
 						</p:column>
+					
 					</p:dataTable>
 
 				</h:panelGrid>

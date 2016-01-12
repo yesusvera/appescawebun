@@ -4,8 +4,11 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,23 +19,13 @@ public class Resposta implements java.io.Serializable {
 	
 	private Integer id;
 	private Integer opcao;
-	private byte[] texto;
+	private String texto;
 	private byte[] audio;
-	private int idPergunta;
+	private Pergunta pergunta;
 
 	public Resposta() {
 	}
 
-	public Resposta(int idPergunta) {
-		this.idPergunta = idPergunta;
-	}
-
-	public Resposta(Integer opcao, byte[] texto, byte[] audio, int idPergunta) {
-		this.opcao = opcao;
-		this.texto = texto;
-		this.audio = audio;
-		this.idPergunta = idPergunta;
-	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -56,11 +49,11 @@ public class Resposta implements java.io.Serializable {
 	}
 
 	@Column(name = "texto")
-	public byte[] getTexto() {
+	public String getTexto() {
 		return this.texto;
 	}
 
-	public void setTexto(byte[] texto) {
+	public void setTexto(String texto) {
 		this.texto = texto;
 	}
 
@@ -73,13 +66,17 @@ public class Resposta implements java.io.Serializable {
 		this.audio = audio;
 	}
 
-	@Column(name = "id_pergunta", nullable = false)
-	public int getIdPergunta() {
-		return this.idPergunta;
+	@ManyToOne
+	@JoinColumn(name="id_pergunta")
+	public Pergunta getPergunta() {
+		return pergunta;
 	}
 
-	public void setIdPergunta(int idPergunta) {
-		this.idPergunta = idPergunta;
+
+	public void setPergunta(Pergunta pergunta) {
+		this.pergunta = pergunta;
 	}
+
+
 
 }

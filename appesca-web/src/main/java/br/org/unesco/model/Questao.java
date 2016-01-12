@@ -2,13 +2,22 @@ package br.org.unesco.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.IndexColumn;
 
 @Entity
 @Table(name = "TB_QUESTAO", schema="appesca")
@@ -20,6 +29,7 @@ public class Questao implements java.io.Serializable {
 	private String titulo;
 	private Integer ordem;
 	private Formulario formulario;
+	private List<Pergunta> listaPerguntas;
 
 	public Questao() {
 	}
@@ -63,6 +73,17 @@ public class Questao implements java.io.Serializable {
 
 	public void setFormulario(Formulario formulario) {
 		this.formulario = formulario;
+	}
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "questao")
+	@Fetch(FetchMode.SUBSELECT)
+	public List<Pergunta> getListaPerguntas() {
+		return listaPerguntas;
+	}
+
+
+	public void setListaPerguntas(List<Pergunta> pergunta) {
+		this.listaPerguntas = pergunta;
 	}
 
 }

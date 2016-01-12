@@ -234,7 +234,4 @@ public class IdentEntrevistado implements java.io.Serializable {
 	public void setMunicipio(MunicipiosIbge municipio) {
 		this.municipio = municipio;
 	}
-
-
-
 }
