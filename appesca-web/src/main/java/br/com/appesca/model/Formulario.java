@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -18,6 +19,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "TB_FORMULARIO", schema="appesca", uniqueConstraints = @UniqueConstraint(columnNames = "nome") )
@@ -115,7 +119,8 @@ public class Formulario implements java.io.Serializable {
 		this.entrevistado = identEntrevistado;
 	}
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "formulario")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "formulario")
+	@Fetch(FetchMode.SUBSELECT)
 	public List<Questao> getListaQuestoes() {
 		return listaQuestoes;
 	}

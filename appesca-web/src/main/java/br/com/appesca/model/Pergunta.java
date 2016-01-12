@@ -2,11 +2,21 @@ package br.com.appesca.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "TB_PERGUNTA", schema="appesca")
@@ -18,21 +28,13 @@ public class Pergunta implements java.io.Serializable {
 	private Boolean booleana;
 	private Boolean respBooleana;
 	private Integer ordem;
-	private int idQuestao;
+	private Questao questao;
+	private List<Resposta> listaRespostas;
 
 	public Pergunta() {
 	}
 
-	public Pergunta(int idQuestao) {
-		this.idQuestao = idQuestao;
-	}
 
-	public Pergunta(Boolean booleana, Boolean respBooleana, Integer ordem, int idQuestao) {
-		this.booleana = booleana;
-		this.respBooleana = respBooleana;
-		this.ordem = ordem;
-		this.idQuestao = idQuestao;
-	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -73,13 +75,31 @@ public class Pergunta implements java.io.Serializable {
 		this.ordem = ordem;
 	}
 
-	@Column(name = "id_questao", nullable = false)
-	public int getIdQuestao() {
-		return this.idQuestao;
+
+	@ManyToOne
+	@JoinColumn(name="id_questao")
+	public Questao getQuestao() {
+		return questao;
 	}
 
-	public void setIdQuestao(int idQuestao) {
-		this.idQuestao = idQuestao;
+
+
+	public void setQuestao(Questao questao) {
+		this.questao = questao;
 	}
+
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "pergunta")
+	@Fetch(FetchMode.SUBSELECT)
+	public List<Resposta> getListaRespostas() {
+		return listaRespostas;
+	}
+
+
+
+	public void setListaRespostas(List<Resposta> resposta) {
+		this.listaRespostas = resposta;
+	}
+
 
 }
