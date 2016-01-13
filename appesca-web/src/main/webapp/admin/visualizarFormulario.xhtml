@@ -53,41 +53,96 @@
 
 				<h:panelGrid columns="2" cellpadding="10">
 
-					<h:outputText id="q1p1" value="Quantas pessoas moram em sua casa? " />
+					<h:outputText value="1. Quantas pessoas moram em sua casa? " />
 
 					<p:inputText
-						value="#{formularioController.formulario.listaQuestoes[0].listaPerguntas[0].listaRespostas[0].texto}"
-						size="1" style="text-align: center;" />
+						value="#{formularioController.getResposta('q1_p1_r1').texto}"
+						size="1" style="text-align: center;" disabled="true" />
 
-					<p:dataTable var="respostas" value="" >
+					<p:dataTable var="q1_p1_respostas"
+						value="#{formularioController.getListaRespostas('q1_p2')}">
 
-						<p:column id="q1p3" headerText="Sexo" style="text-align: center;">
-							<h:outputText value="M" />
-						</p:column>
-
-						<p:column id="q1p4" headerText="Idade" style="text-align: center;">
-							<h:outputText value="31" />
+						<p:column headerText="Sexo" style="text-align: center;">
+							<h:outputText value="#{q1_p1_respostas.coluna[0]}" />
 						</p:column>
 
-						<p:column id="q1p5" headerText="Parentesco" style="text-align: center;">
-							<h:outputText value="Pai" />
+						<p:column headerText="Idade" style="text-align: center;">
+							<h:outputText value="#{q1_p1_respostas.coluna[1]}" />
 						</p:column>
-						
-						<p:column id="q1p6" headerText="Ja frequentou a escola?" style="text-align: center;">
-							<h:outputText value="S" />
+
+						<p:column headerText="Parentesco" style="text-align: center;">
+							<h:outputText value="#{q1_p1_respostas.coluna[2]}" />
 						</p:column>
-						
-						<p:column id="q1p7" headerText="Até que ano?" style="text-align: center;">
-							<h:outputText value="2" />
+
+						<p:column headerText="Ja frequentou a escola?"
+							style="text-align: center;">
+							<h:outputText value="#{q1_p1_respostas.coluna[3]}" />
 						</p:column>
-						
-						<p:column id="q1p8" headerText="Atualmente estuda?" style="text-align: center;">
-							<h:outputText value="Não" />
+
+						<p:column headerText="Até que ano?" style="text-align: center;">
+							<h:outputText value="#{q1_p1_respostas.coluna[4]}" />
 						</p:column>
-					
+
+						<p:column headerText="Atualmente estuda?"
+							style="text-align: center;">
+							<h:outputText value="#{q1_p1_respostas.coluna[5]}" />
+						</p:column>
+
+					</p:dataTable>
+				</h:panelGrid>
+				<br />
+				<h:panelGrid columns="1" cellpadding="10">
+
+					<h:outputText
+						value="1.1 Quem é responsável pela unidade familiar? " />
+
+
+					<p:dataTable var="q1_p2_respostas"
+						value="#{formularioController.getListaRespostas('q1_p3')}">
+
+						<p:column headerText="Identificação (Primeiro nome)"
+							style="text-align: center;">
+							<h:outputText value="#{q1_p2_respostas.coluna[0]}" />
+						</p:column>
+
+						<p:column headerText="Sexo" style="text-align: center;">
+							<h:outputText value="#{q1_p2_respostas.coluna[1]}" />
+						</p:column>
+
 					</p:dataTable>
 
 				</h:panelGrid>
+				<br />
+				<h:panelGrid columns="5" style="margin-bottom:10px" cellpadding="5">
+
+					<h:outputText
+						value="2.	Algum dos seus filhos/irmãos não vive mais na comunidade? " />
+
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q2_p1_r1').pergunta.respBooleana ? true : false}"
+						disabled="true" />
+					<h:outputText value="Sim" />
+
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q2_p1_r1').pergunta.respBooleana ? false : true}"
+						disabled="true" />
+					<h:outputText value="Não" />
+
+				</h:panelGrid>
+				<br />
+				<h:panelGrid columns="5" style="margin-bottom:10px" cellpadding="5">
+
+					<h:outputText value="2.1.	Se sim, por que? " />
+
+				<!-- 	<p:selectManyCheckbox id="q2_p2"
+						value="#{formularioController.getListaRespostas('q2_p2')">
+						<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+						<f:selectItem itemLabel="PS4" itemValue="PS4" />
+						<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+					</p:selectManyCheckbox> -->
+
+				</h:panelGrid>
+
 
 			</p:panel>
 

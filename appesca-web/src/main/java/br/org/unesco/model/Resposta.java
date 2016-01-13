@@ -2,6 +2,8 @@ package br.org.unesco.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.text.SimpleDateFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "TB_RESPOSTA", schema="appesca")
@@ -75,6 +78,11 @@ public class Resposta implements java.io.Serializable {
 
 	public void setPergunta(Pergunta pergunta) {
 		this.pergunta = pergunta;
+	}
+	
+	@Transient
+	public String[] getColuna(){
+		return this.texto.split(";");
 	}
 
 

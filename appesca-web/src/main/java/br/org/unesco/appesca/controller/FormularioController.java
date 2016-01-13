@@ -1,6 +1,7 @@
 package br.org.unesco.appesca.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -22,34 +23,32 @@ import br.org.unesco.model.Resposta;
 public class FormularioController implements Serializable {
 	private static final long serialVersionUID = 7096314126107579474L;
 
-    @Inject
-    private FormularioService formularioService;
-    
-    @Inject
-    private UsuarioService usuarioService;
+	@Inject
+	private FormularioService formularioService;
 
-    @Produces
-    @Named
-    private List<Formulario> listaFormularios;
-    
-    private Formulario formulario;
-  
+	@Inject
+	private UsuarioService usuarioService;
 
-    @PostConstruct
-    public void inicializaNovoFormulario() {
-    	try {
+	@Produces
+	@Named
+	private List<Formulario> listaFormularios;
+
+	private Formulario formulario;
+
+	@PostConstruct
+	public void inicializaNovoFormulario() {
+		try {
 			listaFormularios = formularioService.listAll();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-    }
-    
-    public String visualizar(Formulario formulario){
-    	this.formulario = formulario;
-    	return "visualizarFormulario";
-    }
-   
-   
+	}
+
+	public String visualizar(Formulario formulario) {
+		this.formulario = formulario;
+		return "visualizarFormulario";
+	}
+
 	public List<Formulario> getListaFormularios() {
 		return listaFormularios;
 	}
@@ -81,28 +80,59 @@ public class FormularioController implements Serializable {
 	public void setFormulario(Formulario formulario) {
 		this.formulario = formulario;
 	}
-	
-	public String getResposta(String chave){
 
-		String indices[] = chave.split("_");
-		String q = indices[0].substring(1);
-		String p = indices[1].substring(1);
-		String r = indices[2].substring(1);
-		
-		for (Questao questao : formulario.getListaQuestoes()) {
-			if(q.equals(questao.getOrdem().intValue())){
-				for (Pergunta pergunta : questao.getListaPerguntas()) {
-					if(p.equals(pergunta.getOrdem().intValue())){
-						for (Resposta resposta : pergunta.getListaRespostas()) {
-							if(r.equals(resposta.getOpcao().intValue())){
-								return resposta.getTexto();
+	public Resposta getResposta(String chave) {
+		try {
+			String indices[] = chave.split("_");
+			String q = indices[0].substring(1);
+			String p = indices[1].substring(1);
+			String r = indices[2].substring(1);
+
+			for (Questao questao : formulario.getListaQuestoes()) {
+				if (q.equals(questao.getOrdem().toString())) {
+					for (Pergunta pergunta : questao.getListaPerguntas()) {
+						if (p.equals(pergunta.getOrdem().toString())) {
+							if (pergunta.getBooleana()) {
+								Resposta respBoleana = new Resposta();
+								respBoleana.setPergunta(pergunta);
+								return respBoleana;
+							}
+							for (Resposta resposta : pergunta.getListaRespostas()) {
+								if (r.equals(resposta.getOpcao().toString())) {
+									return resposta;
+								}
 							}
 						}
 					}
 				}
 			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return "";
+		return new Resposta();
 	}
 	
+	public List<Resposta> getListaRespostas(String chave) {
+		try {
+			String indices[] = chave.split("_");
+			String q = indices[0].substring(1);
+			String p = indices[1].substring(1);
+
+			for (Questao questao : formulario.getListaQuestoes()) {
+				if (q.equals(questao.getOrdem().toString())) {
+					for (Pergunta pergunta : questao.getListaPerguntas()) {
+						if (p.equals(pergunta.getOrdem().toString())) {
+							return pergunta.getListaRespostas();
+						}
+					}
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ArrayList<Resposta>();
+	}
+
 }
