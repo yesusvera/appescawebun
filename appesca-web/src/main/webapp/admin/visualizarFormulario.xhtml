@@ -44,14 +44,14 @@
 				</h:panelGrid>
 			</p:panel>
 
-			<p:panel id="q1" header="Questão 1" toggleable="true"
-				closable="false" toggleSpeed="500" closeSpeed="500"
-				widgetVar="panel" style="margin-bottom:20px">
+			<p:panel header="Questão 1" toggleable="true" closable="false"
+				toggleSpeed="500" closeSpeed="500" widgetVar="panel"
+				style="margin-bottom:20px">
 
 				<p:ajax event="toggle" listener="#{panelView.onToggle}"
 					update="msgs" />
 
-				<h:panelGrid columns="2" cellpadding="10">
+				<h:panelGrid id="q1" columns="2" cellpadding="10">
 
 					<h:outputText value="1. Quantas pessoas moram em sua casa? " />
 
@@ -96,7 +96,6 @@
 					<h:outputText
 						value="1.1 Quem é responsável pela unidade familiar? " />
 
-
 					<p:dataTable var="q1_p2_respostas"
 						value="#{formularioController.getListaRespostas('q1_p3')}">
 
@@ -112,8 +111,11 @@
 					</p:dataTable>
 
 				</h:panelGrid>
+
 				<br />
-				<h:panelGrid columns="5" style="margin-bottom:10px" cellpadding="5">
+
+				<h:panelGrid id="q2" columns="5" style="margin-bottom:10px"
+					cellpadding="5">
 
 					<h:outputText
 						value="2.	Algum dos seus filhos/irmãos não vive mais na comunidade? " />
@@ -129,20 +131,649 @@
 					<h:outputText value="Não" />
 
 				</h:panelGrid>
-				<br />
-				<h:panelGrid columns="5" style="margin-bottom:10px" cellpadding="5">
 
+				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
 					<h:outputText value="2.1.	Se sim, por que? " />
+				</h:panelGrid>
 
-				<!-- 	<p:selectManyCheckbox id="q2_p2"
-						value="#{formularioController.getListaRespostas('q2_p2')">
-						<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-						<f:selectItem itemLabel="PS4" itemValue="PS4" />
-						<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
-					</p:selectManyCheckbox> -->
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+
+					<h:outputText value="a." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q2_p2_r1').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Para estudar" />
+
+					<h:outputText value="b." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q2_p2_r2').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Para buscar oportunidades de trabalho" />
+
+					<h:outputText value="c." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q2_p2_r3').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText
+						value="Para ter acesso a serviços básicos (saúde, moradia, segurança)" />
+
+					<h:outputText value="d." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q2_p2_r4').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Casou-se com alguém de fora" />
+
+					<h:outputText value="e." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q2_p2_r5').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Aposentou-se" />
+
+					<h:outputText value="f." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q2_p2_r6').opcao != null ? true : false}"
+						disabled="true" />
+
+					<p:outputPanel>
+						<h:outputText value="Outro. Qual? " />
+						<p:inputText
+							value="#{formularioController.getResposta('q2_p2_r6').texto != null ? formularioController.getResposta('q2_p2_r6').texto : ' '}"
+							size="30" disabled="true" />
+					</p:outputPanel>
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid id="q3" columns="5" style="margin-bottom:10px"
+					cellpadding="5">
+
+					<h:outputText value="3.	Você é proprietário do terreno onde mora? " />
+
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q3_p1_r1').pergunta.respBooleana ? true : false}"
+						disabled="true" />
+					<h:outputText value="Sim" />
+
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q3_p1_r1').pergunta.respBooleana ? false : true}"
+						disabled="true" />
+					<h:outputText value="Não" />
 
 				</h:panelGrid>
 
+
+				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText value="3.1.	Se sim, qual foi a forma de aquisição? " />
+				</h:panelGrid>
+
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+
+					<h:outputText value="a." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q3_p2_r1').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Compra" />
+
+					<h:outputText value="b." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q3_p2_r2').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Herança" />
+
+					<h:outputText value="c." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q3_p2_r3').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Doação" />
+
+					<h:outputText value="d." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q3_p2_r4').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Proveniente de assentamento" />
+
+					<h:outputText value="e." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q3_p2_r5').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Ocupação" />
+
+					<h:outputText value="f." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q3_p2_r6').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Não sabe" />
+
+					<h:outputText value="g." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q3_p2_r7').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Outra" />
+				</h:panelGrid>
+
+
+				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText
+						value="3.2.	Se não, qual é o seu vínculo com o proprietário do terreno? " />
+				</h:panelGrid>
+
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+
+					<h:outputText value="a." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q3_p3_r1').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Filho" />
+
+					<h:outputText value="b." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q3_p3_r2').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Cônjuge" />
+
+					<h:outputText value="c." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q3_p3_r3').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Genro/Nora" />
+
+					<h:outputText value="d." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q3_p3_r4').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Cunhado(a)" />
+
+					<h:outputText value="e." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q3_p3_r5').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Sogro(a)" />
+
+					<h:outputText value="f." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q3_p3_r6').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Locatário" />
+
+					<h:outputText value="g." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q3_p3_r7').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Arrendatário" />
+
+					<h:outputText value="h." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q3_p3_r8').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Meeiro, terça ou quarta" />
+
+					<h:outputText value="i." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q3_p3_r9').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Não sei" />
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText
+						value="4.	Qual é a forma de abastecimento de energia elétrica na sua casa? " />
+				</h:panelGrid>
+
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+
+					<h:outputText value="a." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q4_p1_r1').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Não tem energia elétrica" />
+
+					<h:outputText value="b." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q4_p1_r2').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Gerador comunitário" />
+
+					<h:outputText value="c." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q4_p1_r3').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Gerador domiciliar" />
+
+					<h:outputText value="d." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q4_p1_r4').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Rede geral de energia " />
+
+					<h:outputText value="e." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q4_p1_r5').opcao != null ? true : false}"
+						disabled="true" />
+					<p:outputPanel>
+						<h:outputText value="Outro. Qual? " />
+						<p:inputText
+							value="#{formularioController.getResposta('q4_p1_r5').texto != null ? formularioController.getResposta('q4_p1_r5').texto : ' '}"
+							size="30" disabled="true" />
+					</p:outputPanel>
+
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText
+						value="5.	Como é feito o abastecimento de água da sua casa? " />
+				</h:panelGrid>
+
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+
+					<h:outputText value="a." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q5_p1_r1').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Rede de distribuição" />
+
+					<h:outputText value="b." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q5_p1_r2').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Poço " />
+
+					<h:outputText value="c." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q5_p1_r3').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Pega do rio (ou igarapé) com o balde" />
+
+					<h:outputText value="d." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q5_p1_r4').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText
+						value="Usa bomba elétrica para puxar a água do rio (ou igarapé)" />
+
+					<h:outputText value="e." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q5_p1_r5').opcao != null ? true : false}"
+						disabled="true" />
+					<p:outputPanel>
+						<h:outputText value="Outro. Qual? " />
+						<p:inputText
+							value="#{formularioController.getResposta('q4_p1_r5').texto != null ? formularioController.getResposta('q4_p1_r5').texto : ' '}"
+							size="30" disabled="true" />
+					</p:outputPanel>
+
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText
+						value="6.	Como é tratada a água para beber na sua casa? " />
+				</h:panelGrid>
+
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+
+					<h:outputText value="a." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q6_p1_r1').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="É filtrada" />
+
+					<h:outputText value="b." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q6_p1_r2').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText
+						value="É tratada com cloro / hipoclorito / água sanitária " />
+
+					<h:outputText value="c." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q6_p1_r3').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="É fervida" />
+
+					<h:outputText value="d." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q6_p1_r4').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Não é tratada" />
+
+					<h:outputText value="e." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q6_p1_r5').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Outro" />
+
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText value="7.	O que é feito com o lixo da casa? " />
+				</h:panelGrid>
+
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+
+					<h:outputText value="a." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q7_p1_r1').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="É queimado" />
+
+					<h:outputText value="b." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q7_p1_r2').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="É enterrado" />
+
+					<h:outputText value="c." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q7_p1_r3').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Jogado no terreno" />
+
+					<h:outputText value="d." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q7_p1_r4').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Jogado em rio, igarapé, lago ou mar" />
+
+					<h:outputText value="e." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q7_p1_r5').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Outro" />
+
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText
+						value="8.	Você tem acesso à informação por quais meios? [ler alternativas]" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+
+					<h:outputText value="a." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q8_p1_r1').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Televisão" />
+
+					<h:outputText value="b." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q8_p1_r2').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Rádio" />
+
+					<h:outputText value="c." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q8_p1_r3').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Rádio Comunitária" />
+
+					<h:outputText value="d." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q8_p1_r4').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Rádio amador" />
+
+					<h:outputText value="e." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q8_p1_r5').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Internet" />
+
+					<h:outputText value="f." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q8_p1_r6').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Telefone celular" />
+
+					<h:outputText value="g." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q8_p1_r7').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Telefone Fixo" />
+
+					<h:outputText value="h." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q8_p1_r8').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Telefone público(orelhão)" />
+
+					<h:outputText value="i." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q8_p1_r9').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Telefone rural" />
+
+					<h:outputText value="j." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q8_p1_r10').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Sindicato" />
+
+					<h:outputText value="k." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q8_p1_r11').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Associação" />
+
+					<h:outputText value="l." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q8_p1_r12').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Sistema de Som (carro,moto,bicicleta)" />
+
+					<h:outputText value="m." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q8_p1_r13').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText value="Sistema público de Som" />
+
+					<h:outputText value="n." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q8_p1_r14').opcao != null ? true : false}"
+						disabled="true" />
+					<h:outputText
+						value="Material impresso(jornal,revista,jornal comunitário)" />
+
+
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+
+					<h:outputText
+						value="9.	Quais programas sociais (benefícios do governo) atendem a sua família? (Pode haver mais de uma resposta)" />
+				</h:panelGrid>
+
+
+				<p:panelGrid>
+
+
+
+					<f:facet name="header">
+						<p:row>
+							<p:column style="font-weight: bold;">PROGRAMA</p:column>
+							<p:column style="font-weight: bold;">VALOR DA PARCELA</p:column>
+						</p:row>
+					</f:facet>
+
+					<p:row>
+						<p:column>
+
+							<h:outputText value="a.    " />
+							<p:selectBooleanCheckbox
+								value="#{formularioController.getResposta('q9_p1_r1').opcao != null ? true : false}"
+								disabled="true" />
+							<h:outputText value="    Bolsa Família" />
+
+						</p:column>
+						<p:column style="text-align: center;">
+							<h:outputText
+								value="#{formularioController.getResposta('q9_p1_r1').texto != null ? formularioController.getResposta('q9_p1_r1').texto : ' '}" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+
+							<h:outputText value="b.    " />
+							<p:selectBooleanCheckbox
+								value="#{formularioController.getResposta('q9_p1_r2').opcao != null ? true : false}"
+								disabled="true" />
+							<h:outputText value="    Luz para Todos" />
+
+						</p:column>
+						<p:column style="text-align: center;">
+							<h:outputText
+								value="#{formularioController.getResposta('q9_p1_r2').texto != null ? formularioController.getResposta('q9_p1_r2').texto : ' '}" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+
+							<h:outputText value="c.    " />
+							<p:selectBooleanCheckbox
+								value="#{formularioController.getResposta('q9_p1_r3').opcao != null ? true : false}"
+								disabled="true" />
+							<h:outputText value="    Luz para Todos" />
+
+						</p:column>
+						<p:column style="text-align: center;">
+							<h:outputText
+								value="#{formularioController.getResposta('q9_p1_r3').texto != null ? formularioController.getResposta('q9_p1_r3').texto : ' '}" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+
+							<h:outputText value="d.    " />
+							<p:selectBooleanCheckbox
+								value="#{formularioController.getResposta('q9_p1_r4').opcao != null ? true : false}"
+								disabled="true" />
+							<h:outputText value="    Seguro defeso" />
+
+						</p:column>
+						<p:column style="text-align: center;">
+							<h:outputText
+								value="#{formularioController.getResposta('q9_p1_r4').texto != null ? formularioController.getResposta('q9_p1_r4').texto : ' '}" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+
+							<h:outputText value="e.    " />
+							<p:selectBooleanCheckbox
+								value="#{formularioController.getResposta('q9_p1_r5').opcao != null ? true : false}"
+								disabled="true" />
+							<h:outputText value="    Seguro desemprego" />
+
+						</p:column>
+						<p:column style="text-align: center;">
+							<h:outputText
+								value="#{formularioController.getResposta('q9_p1_r5').texto != null ? formularioController.getResposta('q9_p1_r5').texto : ' '}" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+
+							<h:outputText value="f.    " />
+							<p:selectBooleanCheckbox
+								value="#{formularioController.getResposta('q9_p1_r6').opcao != null ? true : false}"
+								disabled="true" />
+							<h:outputText value="    Aposentadoria" />
+
+						</p:column>
+						<p:column style="text-align: center;">
+							<h:outputText
+								value="#{formularioController.getResposta('q9_p1_r6').texto != null ? formularioController.getResposta('q9_p1_r6').texto : ' '}" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+
+							<h:outputText value="g.    " />
+							<p:selectBooleanCheckbox
+								value="#{formularioController.getResposta('q9_p1_r7').opcao != null ? true : false}"
+								disabled="true" />
+							<h:outputText value="    Auxílio-doença" />
+
+						</p:column>
+						<p:column style="text-align: center;">
+							<h:outputText
+								value="#{formularioController.getResposta('q9_p1_r7').texto != null ? formularioController.getResposta('q9_p1_r7').texto : ' '}" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+
+							<h:outputText value="h.    " />
+							<p:selectBooleanCheckbox
+								value="#{formularioController.getResposta('q9_p1_r8').opcao != null ? true : false}"
+								disabled="true" />
+							<h:outputText value="    Seguro maternidade" />
+
+						</p:column>
+						<p:column style="text-align: center;">
+							<h:outputText
+								value="#{formularioController.getResposta('q9_p1_r8').texto != null ? formularioController.getResposta('q9_p1_r8').texto : ' '}" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+
+							<h:outputText value="i.    " />
+							<p:selectBooleanCheckbox
+								value="#{formularioController.getResposta('q9_p1_r9').opcao != null ? true : false}"
+								disabled="true" />
+							<h:outputText value="    Minha casa, minha vida" />
+
+						</p:column>
+						<p:column style="text-align: center;">
+							<h:outputText
+								value="#{formularioController.getResposta('q9_p1_r9').texto != null ? formularioController.getResposta('q9_p1_r9').texto : ' '}" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+
+							<h:outputText value="j.    " />
+							<p:selectBooleanCheckbox
+								value="#{formularioController.getResposta('q9_p1_r10').opcao != null ? true : false}"
+								disabled="true" />
+
+							<h:outputText value="    Outros. Quais?   " />
+							<p:inputText
+								value="#{formularioController.getResposta('q9_p1_r10').coluna[0] != null ? formularioController.getResposta('q9_p1_r10').coluna[0]  : ' '}"
+								size="30" disabled="true" />
+
+
+						</p:column>
+						<p:column style="text-align: center;">
+							<h:outputText
+								value="#{formularioController.getResposta('q9_p1_r10').coluna[1]  != null ? formularioController.getResposta('q9_p1_r10').coluna[1]  : ' '}" />
+						</p:column>
+					</p:row>
+
+
+
+				</p:panelGrid>
 
 			</p:panel>
 
