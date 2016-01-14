@@ -775,9 +775,26 @@
 						disabled="true" />
 					<p:outputPanel>
 						<h:outputText value="Outras. Qual? " />
-						<p:inputText
-							value="#{formularioController.getResposta('q10_p2_r8').texto != null ? formularioController.getResposta('q10_p2_r8').texto : ' '}"
-							size="30" disabled="true" />
+						
+							
+						<p:editor id="resposta"
+							value="#{formularioController.textoReposta}"
+							size="30" disabled="#{!identidade.eDegravador()}"/>
+						
+						<p:growl id="growl" life="3000" />
+						<p:row rendered="#{identidade.eDegravador()}">
+							<p:commandButton
+								actionListener="#{formularioController.salvarResposta(formularioController.getResposta('q10_p2_r8'))}"
+								id="salvarResposta" update="growl" icon="ui-icon-disk"
+								title="Salvar" />
+							<h:outputText value=" " />
+							<p:media
+								value="http://www.stephaniequinn.com/Music/Mozart%20-%20Presto.mp3"
+								width="150" height="10" player="quicktime">
+								<f:param name="autoPlay" value="false" />
+							</p:media>
+							
+						</p:row>
 					</p:outputPanel>
 
 				</h:panelGrid>
@@ -843,9 +860,11 @@
 						disabled="true" />
 					<p:outputPanel>
 						<h:outputText value="Filha / filho. Quantos? " />
-						<p:inputText
+						
+						<p:inputText 
 							value="#{formularioController.getResposta('q10_p4_r5').texto != null ? formularioController.getResposta('q10_p4_r5').texto : ' '}"
-							size="30" disabled="true" />
+							size="30" disabled="true"/>
+						
 					</p:outputPanel>
 
 				</h:panelGrid>

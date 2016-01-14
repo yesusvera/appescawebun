@@ -8,12 +8,16 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Model;
 import javax.enterprise.inject.Produces;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.org.unesco.appesca.service.FormularioService;
+import br.org.unesco.appesca.service.RespostaService;
 import br.org.unesco.appesca.service.UsuarioService;
 import br.org.unesco.model.Formulario;
+import br.org.unesco.model.Identidade;
 import br.org.unesco.model.Pergunta;
 import br.org.unesco.model.Questao;
 import br.org.unesco.model.Resposta;
@@ -25,6 +29,10 @@ public class FormularioController implements Serializable {
 
 	@Inject
 	private FormularioService formularioService;
+	
+	
+	@Inject
+	private RespostaService respostaService;
 
 	@Inject
 	private UsuarioService usuarioService;
@@ -34,6 +42,10 @@ public class FormularioController implements Serializable {
 	private List<Formulario> listaFormularios;
 
 	private Formulario formulario;
+	
+	@Inject Identidade identidade;
+	
+	private String textoReposta;
 
 	@PostConstruct
 	public void inicializaNovoFormulario() {
@@ -46,6 +58,7 @@ public class FormularioController implements Serializable {
 
 	public String visualizar(Formulario formulario) {
 		this.formulario = formulario;
+		this.textoReposta = getResposta("q10_p2_r8").getTexto();
 		return "visualizarFormulario";
 	}
 
@@ -133,6 +146,31 @@ public class FormularioController implements Serializable {
 			e.printStackTrace();
 		}
 		return new ArrayList<Resposta>();
+	}
+	
+	
+	public void salvarResposta(Resposta resp) {
+		try {
+			resp.setTexto(textoReposta);
+			respostaService.save(resp);
+	        addMessage("Alteração realizada com sucesso!!");
+		} catch (Exception e) {
+			addMessage("Erro ao salvar a resposta!!");
+		}
+		
+    }
+     
+    public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+	public String getTextoReposta() {
+		return textoReposta;
+	}
+
+	public void setTextoReposta(String textoReposta) {
+		this.textoReposta = textoReposta;
 	}
 
 }
