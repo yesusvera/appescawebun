@@ -10,7 +10,7 @@
 		<h:form id="visualizarForm">
 			<p:growl id="msgs" showDetail="true" />
 
-			<p:panel id="idEntrevistado" header="Identificação do entrevistado"
+			<p:panel id="idEntrevistado" header="IDENTIFICAÇÃO DO ENTREVISTADO"
 				style="margin-bottom:20px; width:800px">
 				<h:panelGrid columns="4" cellpadding="10">
 					<h:outputText value="Nome completo: " />
@@ -39,9 +39,6 @@
 			<p:panel header="BLOCO 1 - ASPECTOS SOCIAIS" toggleable="true"
 				closable="false" toggleSpeed="500" closeSpeed="500"
 				widgetVar="panel" style="margin-bottom:20px" collapsed="true">
-
-				<p:ajax event="toggle" listener="#{panelView.onToggle}"
-					update="msgs" />
 
 				<h:panelGrid id="q1" columns="2" cellpadding="10">
 					<h:outputText value="1. Quantas pessoas moram em sua casa? " />
@@ -861,24 +858,18 @@
 				closable="false" toggleSpeed="500" closeSpeed="500"
 				widgetVar="panel2" style="margin-bottom:20px" collapsed="true">
 
-				<p:ajax event="toggle" listener="#{panelView.onToggle}"
-					update="msgs" />
 			</p:panel>
 
 			<p:panel header="BLOCO 3 - ASPECTOS CULTURAIS" toggleable="true"
 				closable="false" toggleSpeed="500" closeSpeed="500"
 				widgetVar="panel3" style="margin-bottom:20px" collapsed="true">
 
-				<p:ajax event="toggle" listener="#{panelView.onToggle}"
-					update="msgs" />
 			</p:panel>
 
 			<p:panel header="BLOCO 4 - ASPECTOS AMBIENTAIS" toggleable="true"
 				closable="false" toggleSpeed="500" closeSpeed="500"
 				widgetVar="panel4" style="margin-bottom:20px" collapsed="true">
 
-				<p:ajax event="toggle" listener="#{panelView.onToggle}"
-					update="msgs" />
 			</p:panel>
 
 			<p:panel header="BLOCO 5 - QUESTÕES PARA PESCADORES"
@@ -886,8 +877,6 @@
 				closeSpeed="500" widgetVar="panel5" style="margin-bottom:20px"
 				collapsed="true">
 
-				<p:ajax event="toggle" listener="#{panelView.onToggle}"
-					update="msgs" />
 			</p:panel>
 
 			<p:panel header="BLOCO 6 - DADOS SOBRE A PRODUÇÃO E BENEFICIAMENTO"
@@ -895,8 +884,6 @@
 				closeSpeed="500" widgetVar="panel6" style="margin-bottom:20px"
 				collapsed="true">
 
-				<p:ajax event="toggle" listener="#{panelView.onToggle}"
-					update="msgs" />
 			</p:panel>
 
 			<p:panel
@@ -905,8 +892,6 @@
 				closeSpeed="500" widgetVar="panel7" style="margin-bottom:20px"
 				collapsed="true">
 
-				<p:ajax event="toggle" listener="#{panelView.onToggle}"
-					update="msgs" />
 			</p:panel>
 
 			<p:panel header="BLOCO 8 - DADOS SOBRE BENS E GASTOS"
@@ -914,8 +899,6 @@
 				closeSpeed="500" widgetVar="panel8" style="margin-bottom:20px"
 				collapsed="true">
 
-				<p:ajax event="toggle" listener="#{panelView.onToggle}"
-					update="msgs" />
 			</p:panel>
 
 			<p:panel header="BLOCO 9 - DADOS SOBRE GARGALOS E OPORTUNIDADES"
@@ -923,8 +906,6 @@
 				closeSpeed="500" widgetVar="panel9" style="margin-bottom:20px"
 				collapsed="true">
 
-				<p:ajax event="toggle" listener="#{panelView.onToggle}"
-					update="msgs" />
 			</p:panel>
 
 		</h:form>
