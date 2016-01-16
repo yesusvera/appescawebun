@@ -9,6 +9,7 @@
         <h1>Questões para comunitários</h1>
        <h:form id="formCamaraoRegional">
 			<p:dataTable var="formulario" value="#{formularioController.listaFormularios}">
+				
 				<p:column headerText="Nome" filterBy="#{formulario.entrevistado.nomeCompleto}" sortBy="#{formulario.entrevistado.nomeCompleto}" style="text-align: center;">
 					<h:outputText value="#{formulario.entrevistado.nomeCompleto}" />
 				</p:column>

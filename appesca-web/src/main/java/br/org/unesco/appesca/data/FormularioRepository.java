@@ -25,6 +25,7 @@ import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 
 import br.org.unesco.model.Formulario;
 import br.org.unesco.model.Usuario;
@@ -52,11 +53,13 @@ public class FormularioRepository {
     }
     
     public void save(Formulario usr){
+//    	em.getTransaction().begin();
     	if(usr.getId()==null){
     		em.persist(usr);
     	}else{
     		em.merge(usr);
     	}
+//    	em.getTransaction().commit();
     }
     
     @SuppressWarnings("unchecked")
