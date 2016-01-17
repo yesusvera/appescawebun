@@ -25,6 +25,11 @@
                <h:outputLabel for="pnlSelecaoMembrosEquipe" value="Membros:" />
                <h:panelGrid id="pnlSelecaoMembrosEquipe" columns="3" columnClasses="titleCell">
                <p:fieldset id="availableCarsField" legend="Usuários disponíveis" style="font-size:x-small">
+               			<h:outputLabel for="ufFiltro" value="Filtro UF:" />
+		                <p:selectOneMenu id="ufFiltro" value="#{equipeController.ufFiltro}" style="width:125px">
+				             <f:selectItems value="#{usuarioController.listaUFs()}"  />
+				        </p:selectOneMenu>
+		                <h:message for="uf" errorClass="invalid" />
 				        <p:dataGrid id="availableCars" var="usrTemp" value="#{equipeController.listaUsuarios}" columns="2" paginator="true"
 				         rows="6" 
 				         paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {NextPageLink} "

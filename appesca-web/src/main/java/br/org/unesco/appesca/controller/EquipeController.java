@@ -51,6 +51,8 @@ public class EquipeController implements Serializable {
      
     private Usuario usuarioSelecionado;
     
+    private String ufFiltro;
+    
 
     @PostConstruct
     public void inicializaNovoEquipe() {
@@ -187,5 +189,12 @@ public class EquipeController implements Serializable {
 	public void setUsuarioSelecionado(Usuario usuarioSelecionado) {
 		this.usuarioSelecionado = usuarioSelecionado;
 	}
-	
+
+	public String getUfFiltro() {
+		return ufFiltro;
+	}
+
+	public void setUfFiltro(String ufFiltro) {
+		this.ufFiltro = ufFiltro;
+	}
 }

@@ -69,6 +69,13 @@
                 			redisplay="true"/>
                 <h:message for="senhaConfirm" errorClass="invalid" />
                 
+                <h:outputLabel for="uf" value="UF:" />
+                <p:selectOneMenu id="uf" value="#{usuarioController.usuario.uf}" style="width:125px">
+		             <f:selectItems value="#{usuarioController.listaUFs()}"  />
+		        </p:selectOneMenu>
+                <h:message for="uf" errorClass="invalid" />
+                
+                
                 <h:outputLabel for="perfil" value="Perfil:" />
                 <p:selectOneMenu id="perfil" value="#{usuarioController.usuario.perfil}" style="width:125px">
 		             <f:selectItems value="#{usuarioController.listaPerfis()}"  />

@@ -24,6 +24,9 @@
 				<p:column  headerText="Endereço" filterBy="#{usr.endereco}" sortBy="#{usr.endereco}">
 					<h:outputText value="#{usr.endereco}" /> 
 				</p:column>
+				<p:column  headerText="UF" sortBy="#{usr.uf}" filterBy="#{usr.uf}"  width="120">
+					<h:outputText value="#{usr.uf}" /> 
+				</p:column>
 				<p:column width="110" headerText="Perfil" filterBy="#{usr.perfil}" sortBy="#{usr.perfil}">
 					<i class="fa #{usr.perfil.fontAweSomeIcon}"/> 
 					<br/>

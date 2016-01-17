@@ -20,6 +20,7 @@ import org.primefaces.model.StreamedContent;
 import br.org.unesco.appesca.enums.PerfilEnum;
 import br.org.unesco.appesca.service.UsuarioService;
 import br.org.unesco.model.Identidade;
+import br.org.unesco.model.UFEnum;
 import br.org.unesco.model.Usuario;
 
 @Model
@@ -106,6 +107,14 @@ public class UsuarioController implements Serializable {
         	  continue;
           }
           items.add(new SelectItem(g, g.getDescricao()));
+        }
+        return items;
+      }
+    
+    public List<SelectItem> listaUFs() {
+    	List<SelectItem> items = new ArrayList<>();
+        for(UFEnum uf: UFEnum.values()) {
+          items.add(new SelectItem(uf, uf.getNome()));
         }
         return items;
       }

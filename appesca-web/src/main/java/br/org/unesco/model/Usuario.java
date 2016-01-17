@@ -37,6 +37,7 @@ public class Usuario implements java.io.Serializable {
 	private String senha;
 	private PerfilEnum perfil;
 	private byte[] imagem;
+	private String uf;
 	
 	private List<Equipe> listaEquipes;
 
@@ -142,5 +143,16 @@ public class Usuario implements java.io.Serializable {
 
 	public void setListaEquipes(List<Equipe> listaEquipes) {
 		this.listaEquipes = listaEquipes;
+	}
+
+	@NotNull
+    @Size(min = 2, max = 2)
+	@Column(length = 2)
+	public String getUf() {
+		return uf;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
 }
