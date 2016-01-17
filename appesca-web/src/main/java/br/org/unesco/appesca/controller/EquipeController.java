@@ -55,11 +55,14 @@ public class EquipeController implements Serializable {
     
 
     @PostConstruct
-    public void inicializaNovoEquipe() {
+    public void inicializaNovaEquipe() {
     	try {
 			listaEquipes = equipeService.listAll();
 			usuariosEscolhidos = new ArrayList<>();
 			equipe = new Equipe();
+			if(identidade.getUsuarioLogado()!=null && identidade.getUsuarioLogado().getUf()!=null){
+				ufFiltro = identidade.getUsuarioLogado().getUf();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -116,6 +119,7 @@ public class EquipeController implements Serializable {
     	
     	try {
 			listaUsuarios = usuarioService.listAll();
+
 			usuariosEscolhidos = new ArrayList<>();
 		} catch (Exception e) {
 			e.printStackTrace();
