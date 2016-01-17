@@ -27,7 +27,8 @@ public class Equipe implements java.io.Serializable {
 	
 	private Integer id;
 	private String nome;
-	private String descricao;
+	private String ultimosAvisos;
+	private String regulamento;
 	
 	private Usuario coordenador;
 	
@@ -56,13 +57,22 @@ public class Equipe implements java.io.Serializable {
 		this.nome = nome;
 	}
 
-	@Column(name = "descricao", length = 100)
-	public String getDescricao() {
-		return this.descricao;
+	@Column(name = "ultimos_avisos")
+	public String getUltimosAvisos() {
+		return this.ultimosAvisos;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setUltimosAvisos(String ultimosAvisos) {
+		this.ultimosAvisos = ultimosAvisos;
+	}
+	
+	@Column(name = "regulamento")
+	public String getRegulamento() {
+		return this.regulamento;
+	}
+
+	public void setRegulamento(String regulamento) {
+		this.regulamento = regulamento;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)

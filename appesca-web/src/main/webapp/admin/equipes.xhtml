@@ -13,9 +13,6 @@
 				<p:column headerText="Nome" filterBy="#{equipe.nome}" sortBy="#{equipe.nome}">
 					<h:outputText value="#{equipe.nome}" />
 				</p:column>
-				<!-- <p:column headerText="Descrição" filterBy="#{equipe.descricao}" sortBy="#{equipe.descricao}">
-					<h:outputText value="#{equipe.descricao}" />
-				</p:column> -->
 				<p:column headerText="Coordenador" filterBy="#{equipe.coordenador.nome}" sortBy="#{equipe.coordenador.nome}">
 					<p:graphicImage cache="false" value="#{usuarioController.dynamicImage}"
 						style="border-radius: 22px;vertical-align:middle" 
