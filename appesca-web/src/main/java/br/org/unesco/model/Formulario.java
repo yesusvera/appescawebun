@@ -22,6 +22,10 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 
 @Entity
 @Table(name = "TB_FORMULARIO", schema="appesca", uniqueConstraints = @UniqueConstraint(columnNames = "nome") )
@@ -37,7 +41,10 @@ public class Formulario implements java.io.Serializable {
 	
 	private IdentEntrevistado entrevistado;
 	
-	List<Questao> listaQuestoes;
+	private List<Questao> listaQuestoes;
+	
+	private MapModel map;
+	
 
 
 
@@ -127,6 +134,14 @@ public class Formulario implements java.io.Serializable {
 
 	public void setListaQuestoes(List<Questao> listaQuestoes) {
 		this.listaQuestoes = listaQuestoes;
+	}
+
+	@Transient
+	public MapModel getMap() {
+		map = new DefaultMapModel();
+		LatLng coord = new LatLng(36.879466, 30.667648);
+		map.addOverlay(new Marker(coord, "Local do formulario", "konyaalti.png", "http://maps.google.com/mapfiles/ms/micons/blue-dot.png"));
+		return map;
 	}
 
 }

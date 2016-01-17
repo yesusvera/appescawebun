@@ -46,6 +46,7 @@ public class FormularioController implements Serializable {
 	@Inject Identidade identidade;
 	
 	private String textoReposta;
+	
 
 	@PostConstruct
 	public void inicializaNovoFormulario() {
@@ -59,7 +60,7 @@ public class FormularioController implements Serializable {
 	public String visualizar(Formulario formulario) {
 		this.formulario = formulario;
 		this.textoReposta = getResposta("q10_p2_r8").getTexto();
-		return "visualizarFormulario";
+		return "visualizarFormulario?faces-redirect=true";
 	}
 
 	public List<Formulario> getListaFormularios() {
