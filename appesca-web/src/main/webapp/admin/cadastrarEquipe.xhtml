@@ -43,7 +43,7 @@
 				         rows="6" 
 				         paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {NextPageLink} "
 		        		rowsPerPageTemplate="6,12,16">
-				            <p:panel id="pnl" header="#{usrTemp.login}" rendered="#{usrTemp.uf eq equipeController.ufFiltro}" style="text-align:center">
+				            <p:panel id="pnl" header="#{usrTemp.login}" style="text-align:center">
 				                <h:panelGrid columns="1" style="width:100%">
 				                    <p:graphicImage cache="false" value="#{equipeController.dynamicImage}" 
 										 rendered="#{usrTemp.imageGraphics != null}" width="75" height="55">
@@ -71,6 +71,9 @@
 			                </p:column>
 			                <p:column headerText="Login" style="width:25%">
 			                    <h:outputText value="#{usrTmpEscolhido.login}" />
+			                </p:column>
+			                <p:column headerText="UF" style="width:10%">
+			                    <h:outputText value="#{usrTmpEscolhido.uf}" />
 			                </p:column>
 			                <p:column style="width:15%">
 			                  <p:commandLink update="formularioCad" immediate="true" action="#{equipeController.removerSelecionado(usrTmpEscolhido)}">

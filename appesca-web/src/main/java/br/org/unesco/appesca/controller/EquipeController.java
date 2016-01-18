@@ -60,13 +60,17 @@ public class EquipeController implements Serializable {
 			listaEquipes = equipeService.listAll();
 			usuariosEscolhidos = new ArrayList<>();
 			equipe = new Equipe();
-			if(identidade.getUsuarioLogado()!=null && identidade.getUsuarioLogado().getUf()!=null){
-				ufFiltro = identidade.getUsuarioLogado().getUf();
-			}
+			pegaUFCoordenador();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
     }
+
+	private void pegaUFCoordenador() {
+		if(identidade.getUsuarioLogado()!=null && identidade.getUsuarioLogado().getUf()!=null){
+			ufFiltro = identidade.getUsuarioLogado().getUf();
+		}
+	}
     
     public void onUsuarioDrop(DragDropEvent ddEvent) {
         Usuario usr = ((Usuario) ddEvent.getData());
@@ -119,8 +123,8 @@ public class EquipeController implements Serializable {
     	
     	try {
 			listaUsuarios = usuarioService.listAll();
-
 			usuariosEscolhidos = new ArrayList<>();
+			pegaUFCoordenador();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -132,6 +136,7 @@ public class EquipeController implements Serializable {
     	try {
 			listaUsuarios = usuarioService.listAll();
 			usuariosEscolhidos =equipe.getListaMembrosEquipe();
+			pegaUFCoordenador();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -171,6 +176,17 @@ public class EquipeController implements Serializable {
 	}
 
 	public List<Usuario> getListaUsuarios() {
+		//FILTRANDO POR UF.
+		if(listaUsuarios!=null && ufFiltro!=null){
+			List<Usuario> listaTmp = new ArrayList<>();
+			for(Usuario usrTmp : listaUsuarios){
+				if(usrTmp.getUf().equalsIgnoreCase(ufFiltro)){
+					listaTmp.add(usrTmp);
+				}
+			}
+			return listaTmp;
+		}
+		
 		return listaUsuarios;
 	}
 
