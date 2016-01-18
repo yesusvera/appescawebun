@@ -2,6 +2,7 @@ package br.org.unesco.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -38,6 +39,8 @@ public class Formulario implements java.io.Serializable {
 	private int idTipoFormulario;
 	private int idUsuario;
 	private Date dataAplicacao;
+	private BigDecimal latitude;
+	private BigDecimal longitude;
 	
 	private IdentEntrevistado entrevistado;
 	
@@ -135,12 +138,32 @@ public class Formulario implements java.io.Serializable {
 	public void setListaQuestoes(List<Questao> listaQuestoes) {
 		this.listaQuestoes = listaQuestoes;
 	}
+	
+	
+	@Column(name = "latitude", nullable = true, precision=10, scale=8)
+	public BigDecimal getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(BigDecimal latitude) {
+		this.latitude = latitude;
+	}
+
+	@Column(name = "longitude", nullable = true, precision=11, scale=8)
+	public BigDecimal getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(BigDecimal longitude) {
+		this.longitude = longitude;
+	}
 
 	@Transient
 	public MapModel getMap() {
 		map = new DefaultMapModel();
-		LatLng coord = new LatLng(36.879466, 30.667648);
+		LatLng coord = new LatLng(getLatitude().doubleValue(), getLongitude().doubleValue());
 		map.addOverlay(new Marker(coord, "Local do formulario", "konyaalti.png", "http://maps.google.com/mapfiles/ms/micons/blue-dot.png"));
+	
 		return map;
 	}
 
