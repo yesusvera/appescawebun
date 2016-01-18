@@ -161,9 +161,11 @@ public class Formulario implements java.io.Serializable {
 	@Transient
 	public MapModel getMap() {
 		map = new DefaultMapModel();
-		LatLng coord = new LatLng(getLatitude().doubleValue(), getLongitude().doubleValue());
-		map.addOverlay(new Marker(coord, "Local do formulario", "konyaalti.png", "http://maps.google.com/mapfiles/ms/micons/blue-dot.png"));
-	
+		
+		if(getLatitude()!=null && getLongitude()!=null){
+			LatLng coord = new LatLng(getLatitude().doubleValue(), getLongitude().doubleValue());
+			map.addOverlay(new Marker(coord, "Local do formulario", "konyaalti.png", "http://maps.google.com/mapfiles/ms/micons/blue-dot.png"));
+		}
 		return map;
 	}
 

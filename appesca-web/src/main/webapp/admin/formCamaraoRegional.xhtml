@@ -6,7 +6,7 @@
     xmlns:p="http://primefaces.org/ui"
     template="/WEB-INF/templates/defaultLogado.xhtml">
     <ui:define name="content">
-        <h1>Questões para comunitários</h1>
+        <h1>Formulário - Camarão Regional</h1>
        <h:form id="formCamaraoRegional">
 			<p:dataTable var="formulario" value="#{formularioController.listaFormularios}">
 				
@@ -32,7 +32,7 @@
 				</p:column>
 			</p:dataTable>
 			<br/>
-			<h:commandButton value="Mostrar mais" />
+			<!-- <h:commandButton value="Mostrar mais" /> -->
 		</h:form>
     </ui:define>
 </ui:composition>

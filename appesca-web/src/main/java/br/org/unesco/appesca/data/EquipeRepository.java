@@ -35,6 +35,7 @@ public class EquipeRepository {
         return em.find(Equipe.class, id);
     }
     
+    
     public void save(Equipe equipe){
 //    	if(equipe.getId()==null){
 //    		em.persist(equipe);
