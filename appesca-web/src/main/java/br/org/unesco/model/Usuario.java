@@ -5,6 +5,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import java.io.ByteArrayInputStream;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,13 +14,21 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.joda.time.DateTime;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 
 import br.org.unesco.appesca.enums.PerfilEnum;
 
@@ -38,16 +47,17 @@ public class Usuario implements java.io.Serializable {
 	private PerfilEnum perfil;
 	private byte[] imagem;
 	private String uf;
+	//private String centerMap;
 	
 	private List<Equipe> listaEquipes;
-
+	
+//	private List<Rastro> listaRastros;
 //	
-//	@OneToMany(fetch = FetchType.EAGER, mappedBy="coordenador") 
-//	List<Equipe> listaEquipesCoordenadas;
+	//private MapModel map;
+
 	
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-
 	@Column(name = "id", unique = true, nullable = false)
 	public Integer getId() {
 		return this.id;
@@ -155,4 +165,49 @@ public class Usuario implements java.io.Serializable {
 	public void setUf(String uf) {
 		this.uf = uf;
 	}
+//
+//	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "usuario")
+//	@Fetch(FetchMode.SUBSELECT)
+//	public List<Rastro> getListaRastros() {
+//		return listaRastros;
+//	}
+//
+//	public void setListaRastros(List<Rastro> listaRastros) {
+//		this.listaRastros = listaRastros;
+//	}
+//	
+//	
+//	@Transient
+//	public MapModel getMap() {
+//		map = new DefaultMapModel();
+//		
+//		//int ultimoRastro = listaRastros.size() -1;
+//		
+//		for (Rastro r : listaRastros) {
+//			DateTime dt = new DateTime(r.getDataRegistro());
+//			
+//			int dia = dt.dayOfWeek().get();
+//			
+//			if(r.getLatitude()!=null && r.getLongitude()!=null){
+//				//LatLng coord = new LatLng(r.getLatitude().doubleValue(), r.getLongitude().doubleValue());
+//				LatLng coord = new LatLng(-1.40740000, -48.45145000);
+//				map.addOverlay(new Marker(coord, "Local do formulario", "konyaalti.png", "http://maps.google.com/mapfiles/ms/micons/blue-dot.png"));
+////			    if(listaRastros.lastIndexOf(r) == ultimoRastro){
+////			    	setCenterMap(r.getLatitude().doubleValue() + "," + r.getLongitude().doubleValue());
+////			    }
+//			}
+//			
+//		}
+//		
+//		return map;
+//	}
+//	@Transient
+//	public String getCenterMap() {
+//		this.centerMap = "-1.40740000,-48.45145000";
+//		return centerMap;
+//	}
+//
+//	public void setCenterMap(String center) {
+//		this.centerMap = center;
+//	}
 }
