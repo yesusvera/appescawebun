@@ -8,6 +8,7 @@
 	<ui:define name="content">
 		<h1>Usuários</h1>
 		<h:form id="forms">
+
 			<p:dataTable var="usr" value="#{usuarioController.listaUsuarios}"
 				style=" text-align: center;">
 				<p:column width="150" headerText="Nome" filterBy="#{usr.nome}"
@@ -44,15 +45,18 @@
 						rendered="#{identidade.eAdministrador() or identidade.eCoordenador() and usr.perfil.valor ge identidade.usuarioLogado.perfil.valor}">
 						<i class="fa fa-pencil-square-o" />
 					</p:commandLink>
-			<!-- 		<p:commandLink onclick="PF('dlg').show();"
+					<p:commandLink onclick="PF('dlg + #{usr.id}').show();" 
 						rendered="#{identidade.eAdministrador() or identidade.eCoordenador() and usr.perfil.valor ge identidade.usuarioLogado.perfil.valor}">
-						<i class="fa fa-map-marker"></i>
-						<p:dialog id="gmapDialog" widgetVar="dlg" width="625" height="400"
-							modal="true">
-							<p:gmap id="gmap" center="#{usr.centerMap}" zoom="15"
-								type="HYBRID" style="width:100%;height:400px" model="#{usr.map}"/>
-						</p:dialog>
-					</p:commandLink> -->
+						<i class="fa fa-map-marker" />
+					</p:commandLink>
+					<p:dialog id="gmapDialog" widgetVar="dlg + #{usr.id}" width="625" height="400"
+						modal="true">
+
+						<p:gmap id="gmap" center="#{usr.centerMap}" zoom="#{usr.zoomMapa}"
+							type="HYBRID" style="width:100%;height:400px" model="#{usr.map}" />
+
+					</p:dialog>
+
 
 				</p:column>
 			</p:dataTable>

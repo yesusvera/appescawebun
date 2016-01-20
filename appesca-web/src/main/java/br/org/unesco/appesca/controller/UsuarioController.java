@@ -12,14 +12,21 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.Transient;
 
+import org.joda.time.DateTime;
 import org.primefaces.event.CaptureEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 
 import br.org.unesco.appesca.enums.PerfilEnum;
 import br.org.unesco.appesca.service.UsuarioService;
 import br.org.unesco.model.Identidade;
+import br.org.unesco.model.Rastro;
 import br.org.unesco.model.UFEnum;
 import br.org.unesco.model.Usuario;
 
@@ -149,6 +156,17 @@ public class UsuarioController implements Serializable {
 
 	public void setConfirmacaoSenha(String confirmacaoSenha) {
 		this.confirmacaoSenha = confirmacaoSenha;
+	}
+	
+	private MapModel map;
+	public MapModel getMap() {
+//		map = new DefaultMapModel();
+//
+//				LatLng coord = new LatLng(-1.40740000, -48.45145000);
+//				map.addOverlay(new Marker(coord, "Local do formulario", "konyaalti.png", "http://maps.google.com/mapfiles/ms/micons/blue-dot.png"));
+//			
+	
+		return map;
 	}
 	
 }

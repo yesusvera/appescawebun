@@ -33,10 +33,18 @@ import org.primefaces.model.map.Marker;
 import br.org.unesco.appesca.enums.PerfilEnum;
 
 @Entity
-@Table(name = "TB_USUARIO", schema="appesca")
+@Table(name = "TB_USUARIO", schema = "appesca")
 public class Usuario implements java.io.Serializable {
 
 	private static final long serialVersionUID = -7140175801442164346L;
+
+	private static final int SEGUNDA = 1;
+	private static final int TERÇA = 2;
+	private static final int QUARTA = 3;
+	private static final int QUINTA = 4;
+	private static final int SEXTA = 5;
+	private static final int SABADO = 6;
+	private static final int DOMINGO = 7;
 
 	private Integer id;
 	private String nome;
@@ -47,15 +55,15 @@ public class Usuario implements java.io.Serializable {
 	private PerfilEnum perfil;
 	private byte[] imagem;
 	private String uf;
-	//private String centerMap;
-	
-	private List<Equipe> listaEquipes;
-	
-//	private List<Rastro> listaRastros;
-//	
-	//private MapModel map;
+	private String centerMap = "-1.40740000,-48.45145000";
+	private String zoomMapa = "10";
 
-	
+	private List<Equipe> listaEquipes;
+
+	private List<Rastro> listaRastros;
+
+	private MapModel map;
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
@@ -75,7 +83,6 @@ public class Usuario implements java.io.Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
 
 	@Column(name = "email", length = 50)
 	public String getEmail() {
@@ -96,7 +103,7 @@ public class Usuario implements java.io.Serializable {
 	}
 
 	@NotNull
-    @Size(min = 1, max = 20, message="Digite o login.")
+	@Size(min = 1, max = 20, message = "Digite o login.")
 	@Column(name = "login", length = 20)
 	public String getLogin() {
 		return this.login;
@@ -105,9 +112,9 @@ public class Usuario implements java.io.Serializable {
 	public void setLogin(String login) {
 		this.login = login;
 	}
-	
+
 	@NotNull
-    @Size(min = 1, max = 20, message="Digite a senha.")
+	@Size(min = 1, max = 20, message = "Digite a senha.")
 	@Column(name = "senha", length = 20)
 	public String getSenha() {
 		return this.senha;
@@ -135,16 +142,15 @@ public class Usuario implements java.io.Serializable {
 	public void setImagem(byte[] imagem) {
 		this.imagem = imagem;
 	}
-	
-	
+
 	@Transient
-	public StreamedContent getImageGraphics()  {
-	   if(imagem!=null){
-		   return new DefaultStreamedContent(new ByteArrayInputStream(imagem));
-	   }else{
-		   return null;
-	   }
-	 }
+	public StreamedContent getImageGraphics() {
+		if (imagem != null) {
+			return new DefaultStreamedContent(new ByteArrayInputStream(imagem));
+		} else {
+			return null;
+		}
+	}
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "listaMembrosEquipe")
 	public List<Equipe> getListaEquipes() {
@@ -156,7 +162,7 @@ public class Usuario implements java.io.Serializable {
 	}
 
 	@NotNull
-    @Size(min = 2, max = 2)
+	@Size(min = 2, max = 2)
 	@Column(length = 2)
 	public String getUf() {
 		return uf;
@@ -165,49 +171,84 @@ public class Usuario implements java.io.Serializable {
 	public void setUf(String uf) {
 		this.uf = uf;
 	}
-//
-//	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "usuario")
-//	@Fetch(FetchMode.SUBSELECT)
-//	public List<Rastro> getListaRastros() {
-//		return listaRastros;
-//	}
-//
-//	public void setListaRastros(List<Rastro> listaRastros) {
-//		this.listaRastros = listaRastros;
-//	}
-//	
-//	
-//	@Transient
-//	public MapModel getMap() {
-//		map = new DefaultMapModel();
-//		
-//		//int ultimoRastro = listaRastros.size() -1;
-//		
-//		for (Rastro r : listaRastros) {
-//			DateTime dt = new DateTime(r.getDataRegistro());
-//			
-//			int dia = dt.dayOfWeek().get();
-//			
-//			if(r.getLatitude()!=null && r.getLongitude()!=null){
-//				//LatLng coord = new LatLng(r.getLatitude().doubleValue(), r.getLongitude().doubleValue());
-//				LatLng coord = new LatLng(-1.40740000, -48.45145000);
-//				map.addOverlay(new Marker(coord, "Local do formulario", "konyaalti.png", "http://maps.google.com/mapfiles/ms/micons/blue-dot.png"));
-////			    if(listaRastros.lastIndexOf(r) == ultimoRastro){
-////			    	setCenterMap(r.getLatitude().doubleValue() + "," + r.getLongitude().doubleValue());
-////			    }
-//			}
-//			
-//		}
-//		
-//		return map;
-//	}
-//	@Transient
-//	public String getCenterMap() {
-//		this.centerMap = "-1.40740000,-48.45145000";
-//		return centerMap;
-//	}
-//
-//	public void setCenterMap(String center) {
-//		this.centerMap = center;
-//	}
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "usuario")
+	@Fetch(FetchMode.SUBSELECT)
+	public List<Rastro> getListaRastros() {
+		return listaRastros;
+	}
+
+	public void setListaRastros(List<Rastro> listaRastros) {
+		this.listaRastros = listaRastros;
+		if (listaRastros != null && listaRastros.size() > 0)
+			setMap();
+	}
+
+	public void setMap() {
+		map = new DefaultMapModel();
+		int ultimoRastro = listaRastros.size() - 1;
+
+		for (Rastro r : listaRastros) {
+			DateTime dt = new DateTime(r.getDataRegistro());
+			if (r.getLatitude() != null && r.getLongitude() != null) {
+				LatLng coord = new LatLng(r.getLatitude().doubleValue(), r.getLongitude().doubleValue());
+				map.addOverlay(getMarkerComPinColorido(coord, r.getData() + " " + r.getHora(), dt.dayOfWeek().get()));
+				if (listaRastros.lastIndexOf(r) == ultimoRastro) {
+					setCenterMap(r.getLatitude().doubleValue() + "," + r.getLongitude().doubleValue());
+					setZoomMapa("15");
+				}
+			}
+
+		}
+	}
+
+	@Transient
+	public MapModel getMap() {
+		return map;
+	}
+
+	@Transient
+	public String getCenterMap() {
+		return centerMap;
+	}
+
+	public void setCenterMap(String center) {
+		this.centerMap = center;
+	}
+
+	@Transient
+	private Marker getMarkerComPinColorido(LatLng coord, String titulo, int dia) {
+		switch (dia) {
+		case SEGUNDA:
+			return new Marker(coord, titulo, "konyaalti.png", "http://maps.google.com/mapfiles/ms/micons/green-dot.png");
+
+		case TERÇA:
+			return new Marker(coord, titulo, "konyaalti.png", "http://maps.google.com/mapfiles/ms/micons/blue-dot.png");
+			
+		case QUARTA:
+			return new Marker(coord, titulo, "konyaalti.png", "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png");
+
+		case QUINTA:
+			return new Marker(coord, titulo, "konyaalti.png", "http://maps.google.com/mapfiles/ms/micons/orange-dot.png");
+
+		case SEXTA:
+			return new Marker(coord, titulo, "konyaalti.png", "http://maps.google.com/mapfiles/ms/micons/red-dot.png");
+
+		case SABADO:
+			return new Marker(coord, titulo, "konyaalti.png", "http://maps.google.com/mapfiles/marker_black.png");
+
+		case DOMINGO:
+			return new Marker(coord, titulo, "konyaalti.png", "http://maps.google.com/mapfiles/marker_grey.png");
+		}
+		return new Marker(coord);
+	}
+
+	@Transient
+	public String getZoomMapa() {
+		return zoomMapa;
+	}
+
+	public void setZoomMapa(String zoomMapa) {
+		this.zoomMapa = zoomMapa;
+	}
 }
