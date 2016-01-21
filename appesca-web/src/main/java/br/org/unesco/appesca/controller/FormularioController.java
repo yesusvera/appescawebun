@@ -45,7 +45,7 @@ public class FormularioController implements Serializable {
 	
 	@Inject Identidade identidade;
 	
-	private String textoReposta;
+	private Resposta respostaEditavel10;
 	
 
 	@PostConstruct
@@ -59,8 +59,14 @@ public class FormularioController implements Serializable {
 
 	public String visualizar(Formulario formulario) {
 		this.formulario = formulario;
-		this.textoReposta = getResposta("q10_p2_r8").getTexto();
-		return "visualizarFormulario?faces-redirect=true";
+		carregarRespostasEditaveis();
+		
+		return "formCamaraoRegional?faces-redirect=true";
+	}
+
+	private void carregarRespostasEditaveis() {
+		this.respostaEditavel10 = getResposta("q10_p2_r8");
+		
 	}
 
 	public List<Formulario> getListaFormularios() {
@@ -126,6 +132,40 @@ public class FormularioController implements Serializable {
 		}
 		return new Resposta();
 	}
+
+	
+	
+	public Resposta obterResposta(String chave) {
+		try {
+			String indices[] = chave.split("_");
+			String q = indices[0].substring(1);
+			String p = indices[1].substring(1);
+			String r = indices[2].substring(1);
+
+			for (Questao questao : formulario.getListaQuestoes()) {
+				if (q.equals(questao.getOrdem().toString())) {
+					for (Pergunta pergunta : questao.getListaPerguntas()) {
+						if (p.equals(pergunta.getOrdem().toString())) {
+							if (pergunta.getBooleana()) {
+								Resposta respBoleana = new Resposta();
+								respBoleana.setPergunta(pergunta);
+								return respBoleana;
+							}
+							for (Resposta resposta : pergunta.getListaRespostas()) {
+								if (r.equals(resposta.getOpcao().toString())) {
+									return resposta;
+								}
+							}
+						}
+					}
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new Resposta();
+	}
 	
 	public List<Resposta> getListaRespostas(String chave) {
 		try {
@@ -152,7 +192,6 @@ public class FormularioController implements Serializable {
 	
 	public void salvarResposta(Resposta resp) {
 		try {
-			resp.setTexto(textoReposta);
 			respostaService.save(resp);
 	        addMessage("Alteração realizada com sucesso!!");
 		} catch (Exception e) {
@@ -166,12 +205,12 @@ public class FormularioController implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
-	public String getTextoReposta() {
-		return textoReposta;
+	public Resposta getRespostaEditavel10() {
+		return respostaEditavel10;
 	}
 
-	public void setTextoReposta(String textoReposta) {
-		this.textoReposta = textoReposta;
+	public void setRespostaEditavel10(Resposta respostaEditavel10) {
+		this.respostaEditavel10 = respostaEditavel10;
 	}
 
 }
