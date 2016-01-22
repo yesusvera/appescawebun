@@ -43,6 +43,11 @@ public class Resposta implements java.io.Serializable {
 	public Integer getOpcao() {
 		return this.opcao;
 	}
+	
+	@Transient
+	public boolean getOpcaoBoleana() {
+		return this.opcao != null ? true : false;
+	}
 
 	public void setOpcao(Integer opcao) {
 		this.opcao = opcao;
@@ -50,7 +55,7 @@ public class Resposta implements java.io.Serializable {
 
 	@Column(name = "texto")
 	public String getTexto() {
-		return this.texto;
+		return this.texto == null ? " " : this.texto;
 	}
 
 	public void setTexto(String texto) {
@@ -79,6 +84,9 @@ public class Resposta implements java.io.Serializable {
 	
 	@Transient
 	public String[] getColuna(){
+		if(this.texto == null){
+			this.texto = " ; ; ; ; ; ; ";
+		}
 		return this.texto.split(";");
 	}
 

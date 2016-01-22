@@ -135,38 +135,6 @@ public class FormularioController implements Serializable {
 
 	
 	
-	public Resposta obterResposta(String chave) {
-		try {
-			String indices[] = chave.split("_");
-			String q = indices[0].substring(1);
-			String p = indices[1].substring(1);
-			String r = indices[2].substring(1);
-
-			for (Questao questao : formulario.getListaQuestoes()) {
-				if (q.equals(questao.getOrdem().toString())) {
-					for (Pergunta pergunta : questao.getListaPerguntas()) {
-						if (p.equals(pergunta.getOrdem().toString())) {
-							if (pergunta.getBooleana()) {
-								Resposta respBoleana = new Resposta();
-								respBoleana.setPergunta(pergunta);
-								return respBoleana;
-							}
-							for (Resposta resposta : pergunta.getListaRespostas()) {
-								if (r.equals(resposta.getOpcao().toString())) {
-									return resposta;
-								}
-							}
-						}
-					}
-				}
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return new Resposta();
-	}
-	
 	public List<Resposta> getListaRespostas(String chave) {
 		try {
 			String indices[] = chave.split("_");
