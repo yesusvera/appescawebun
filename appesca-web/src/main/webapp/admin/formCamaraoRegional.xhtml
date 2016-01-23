@@ -1926,9 +1926,9 @@
 						value="#{formularioController.getResposta('q25_p2_r1').texto}"
 						size="100" disabled="true" />
 				</h:panelGrid>
-				
+
 				<br />
-				
+
 				<h:panelGrid id="q26" columns="1" style="margin-bottom:10px"
 					cellpadding="5">
 					<h:outputText
@@ -1971,9 +1971,9 @@
 						disabled="true" />
 					<h:outputText value="outros" />
 				</h:panelGrid>
-				
+
 				<br />
-				
+
 				<h:panelGrid id="q27" columns="1" style="margin-bottom:10px"
 					cellpadding="5">
 					<h:outputText
@@ -2021,9 +2021,9 @@
 						disabled="true" />
 					<h:outputText value="Outros" />
 				</h:panelGrid>
-				
+
 				<br />
-				
+
 				<h:panelGrid id="q28" columns="1" style="margin-bottom:10px"
 					cellpadding="5">
 					<h:outputText
@@ -2059,7 +2059,8 @@
 					<p:selectBooleanCheckbox
 						value="#{formularioController.getResposta('q28_p1_r6').opcaoBoleana}"
 						disabled="true" />
-					<h:outputText value="Arte, música, cantos (Quadrilha, Bumba Boi, Marabaixo, Carimbó, Caixa do Divino, etc.)" />
+					<h:outputText
+						value="Arte, música, cantos (Quadrilha, Bumba Boi, Marabaixo, Carimbó, Caixa do Divino, etc.)" />
 					<h:outputText value="g." />
 					<p:selectBooleanCheckbox
 						value="#{formularioController.getResposta('q28_p1_r7').opcaoBoleana}"
@@ -2096,13 +2097,12 @@
 							size="50" disabled="true" />
 					</p:outputPanel>
 				</h:panelGrid>
-				
+
 				<br />
 
 				<h:panelGrid id="q29" columns="5" style="margin-bottom:10px"
 					cellpadding="5">
-					<h:outputText
-						value="9.	Você acha bom viver aqui?  " />
+					<h:outputText value="9.	Você acha bom viver aqui?  " />
 					<p:selectBooleanCheckbox
 						value="#{formularioController.getResposta('q29_p1_r1').pergunta.booleana ? formularioController.getResposta('q29_p1_r1').pergunta.respBooleana : false}"
 						disabled="true" />
@@ -2118,6 +2118,390 @@
 				closable="false" toggleSpeed="500" closeSpeed="500"
 				widgetVar="panel4" style="margin-bottom:20px" collapsed="true">
 
+				<br />
+
+				<h:panelGrid id="q30" columns="5" style="margin-bottom:10px"
+					cellpadding="5">
+					<h:outputText
+						value="1.	Hoje você percebe alguma diferença em relação à quantidade de peixe e camarão que tinha aqui antigamente? " />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q30_p1_r1').pergunta.booleana ? formularioController.getResposta('q30_p1_r1').pergunta.respBooleana : false}"
+						disabled="true" />
+					<h:outputText value="Sim" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q30_p1_r1').pergunta.booleana ? !formularioController.getResposta('q30_p1_r1').pergunta.respBooleana : false}"
+						disabled="true" />
+					<h:outputText value="Não" />
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid id="q31" columns="5" style="margin-bottom:10px"
+					cellpadding="5">
+					<h:outputText
+						value="2.	Na sua opinião, os locais onde os moradores da comunidade pescam encontram-se preservados? " />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q31_p1_r1').pergunta.booleana ? formularioController.getResposta('q31_p1_r1').pergunta.respBooleana : false}"
+						disabled="true" />
+					<h:outputText value="Sim" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q31_p1_r1').pergunta.booleana ? !formularioController.getResposta('q31_p1_r1').pergunta.respBooleana : false}"
+						disabled="true" />
+					<h:outputText value="Não" />
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid id="q32" columns="5" style="margin-bottom:10px"
+					cellpadding="5">
+					<h:outputText
+						value="3.	Existem pessoas da comunidade que prejudicam o meio ambiente aqui na região?" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q32_p1_r1').pergunta.booleana ? formularioController.getResposta('q32_p1_r1').pergunta.respBooleana : false}"
+						disabled="true" />
+					<h:outputText value="Sim" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q32_p1_r1').pergunta.booleana ? !formularioController.getResposta('q32_p1_r1').pergunta.respBooleana : false}"
+						disabled="true" />
+					<h:outputText value="Não" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText
+						value="3.1	Se sim, de que forma? (Pode haver mais de uma resposta)" />
+				</h:panelGrid>
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText value="a." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q32_p2_r1').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Desmatando a floresta / mangue" />
+					<h:outputText value="b." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q32_p2_r2').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Usando zangaria para a pesca do camarão " />
+					<h:outputText value="c." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q32_p2_r3').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Usando tapagem nos igarapés/rios" />
+					<h:outputText value="d." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q32_p2_r4').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Jogando lixo no rio" />
+					<h:outputText value="e." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q32_p2_r5').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Criando gado / búfalo" />
+					<h:outputText value="f." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q32_p2_r6').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Pescando camarão pequeno " />
+					<h:outputText value="g." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q32_p2_r7').opcaoBoleana}"
+						disabled="true" />
+					<p:outputPanel>
+						<h:outputText value="Outros. Qual? " />
+						<p:inputText
+							value="#{formularioController.getResposta('q32_p2_r7').texto}"
+							size="50" disabled="true" />
+					</p:outputPanel>
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid id="q33" columns="5" style="margin-bottom:10px"
+					cellpadding="5">
+					<h:outputText
+						value="4.	Existem pessoas de fora da comunidade que prejudicam o meio ambiente aqui na região?" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q33_p1_r1').pergunta.booleana ? formularioController.getResposta('q33_p1_r1').pergunta.respBooleana : false}"
+						disabled="true" />
+					<h:outputText value="Sim" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q33_p1_r1').pergunta.booleana ? !formularioController.getResposta('q33_p1_r1').pergunta.respBooleana : false}"
+						disabled="true" />
+					<h:outputText value="Não" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText
+						value="4.1. Se sim, de que forma? (Pode haver mais de uma resposta)" />
+				</h:panelGrid>
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText value="a." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q33_p2_r1').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Desmatando a floresta / mangue" />
+					<h:outputText value="b." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q33_p2_r2').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Usando zangaria para a pesca do camarão " />
+					<h:outputText value="c." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q33_p2_r3').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Usando tapagem nos igarapés/rios" />
+					<h:outputText value="d." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q33_p2_r4').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Jogando lixo no rio" />
+					<h:outputText value="e." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q33_p2_r5').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Pescando camarão pequeno" />
+					<h:outputText value="f." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q33_p2_r6').opcaoBoleana}"
+						disabled="true" />
+					<p:outputPanel>
+						<h:outputText value="Outros. Qual? " />
+						<p:inputText
+							value="#{formularioController.getResposta('q33_p2_r6').texto}"
+							size="50" disabled="true" />
+					</p:outputPanel>
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid id="q34" columns="1" style="margin-bottom:10px"
+					cellpadding="5">
+					<h:outputText
+						value="5.	Quais são os principais problemas ambientais que você percebe aqui na região atualmente? (Pode haver mais de uma resposta)" />
+				</h:panelGrid>
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText value="a." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q34_p1_r1').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Desmatamento das nascentes" />
+					<h:outputText value="b." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q34_p1_r2').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Desmatamento dos rios e igarapés" />
+					<h:outputText value="c." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q34_p1_r3').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Desmatamento da floresta" />
+					<h:outputText value="d." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q34_p1_r4').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Erosão / queda das beiradas" />
+					<h:outputText value="e." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q34_p1_r5').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Poluição das águas dos rios ou do mar" />
+					<h:outputText value="f." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q34_p1_r6').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Diminuição de produtos de extrativismo " />
+					<h:outputText value="g." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q34_p1_r7').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Diminuição dos pescados" />
+					<h:outputText value="h." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q34_p1_r8').opcaoBoleana}"
+						disabled="true" />
+					<p:outputPanel>
+						<h:outputText value="Outros problemas ambientais: " />
+						<p:inputText
+							value="#{formularioController.getResposta('q34_p1_r8').texto}"
+							size="50" disabled="true" />
+					</p:outputPanel>
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid id="q35" columns="5" style="margin-bottom:10px"
+					cellpadding="5">
+					<h:outputText
+						value="6.	Existem conflitos por causa de uso dos recursos naturais?  " />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q35_p1_r1').pergunta.booleana ? formularioController.getResposta('q35_p1_r1').pergunta.respBooleana : false}"
+						disabled="true" />
+					<h:outputText value="Sim" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q35_p1_r1').pergunta.booleana ? !formularioController.getResposta('q35_p1_r1').pergunta.respBooleana : false}"
+						disabled="true" />
+					<h:outputText value="Não" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText value="6.1 Se sim, quais? " />
+					<p:inputText
+						value="#{formularioController.getResposta('q35_p2_r1').texto}"
+						size="100" disabled="true" />
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid id="q36" columns="5" style="margin-bottom:10px"
+					cellpadding="5">
+					<h:outputText
+						value="7.	A criação da RESEX trouxe benefícios para a sua comunidade? " />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q36_p1_r1').pergunta.booleana ? formularioController.getResposta('q36_p1_r1').pergunta.respBooleana : false}"
+						disabled="true" />
+					<h:outputText value="Sim" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q36_p1_r1').pergunta.booleana ? !formularioController.getResposta('q36_p1_r1').pergunta.respBooleana : false}"
+						disabled="true" />
+					<h:outputText value="Não" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText value="7.1 Se sim, quais? " />
+					<p:inputText
+						value="#{formularioController.getResposta('q36_p2_r1').texto}"
+						size="100" disabled="true" />
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid id="q37" columns="1" style="margin-bottom:10px"
+					cellpadding="5">
+					<h:outputText
+						value="8.	[Apenas para moradores de RESEX] Na sua visão, qual é o papel da RESEX para a sua comunidade? (Pode haver mais de uma resposta)" />
+				</h:panelGrid>
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText value="a." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q37_p1_r1').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Melhorar a estrutura da comunidade" />
+					<h:outputText value="b." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q37_p1_r2').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText
+						value="Melhorar os serviços básicos na comunidade (saúde, educação, saneamento, abastecimento de água e energia, etc.)" />
+					<h:outputText value="c." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q37_p1_r3').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText
+						value="Facilitar o acesso a programas sociais do governo" />
+					<h:outputText value="d." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q37_p1_r4').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Melhorar as condições de vida (de modo geral)" />
+					<h:outputText value="e." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q37_p1_r5').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Mediar conflitos entre comunidades" />
+					<h:outputText value="f." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q37_p1_r6').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Promover ações de fiscalização ambiental" />
+					<h:outputText value="g." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q37_p1_r7').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Promover ações de educação ambiental" />
+					<h:outputText value="h." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q37_p1_r8').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText
+						value="Promover a sustentabilidade das atividades extrativistas" />
+					<h:outputText value="i." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q37_p1_r9').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Não sei" />
+					<h:outputText value="j." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q37_p1_r10').opcaoBoleana}"
+						disabled="true" />
+					<p:outputPanel>
+						<h:outputText value="Outro. Qual? " />
+						<p:inputText
+							value="#{formularioController.getResposta('q37_p1_r10').texto}"
+							size="50" disabled="true" />
+					</p:outputPanel>
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid id="q38" columns="5" style="margin-bottom:10px"
+					cellpadding="5">
+					<h:outputText
+						value="9.	Você acredita que as futuras gerações da comunidade poderão sobreviver dos recursos naturais? " />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q38_p1_r1').pergunta.booleana ? formularioController.getResposta('q38_p1_r1').pergunta.respBooleana : false}"
+						disabled="true" />
+					<h:outputText value="Sim" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q38_p1_r1').pergunta.booleana ? !formularioController.getResposta('q38_p1_r1').pergunta.respBooleana : false}"
+						disabled="true" />
+					<h:outputText value="Não" />
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid id="q39" columns="7" style="margin-bottom:10px"
+					cellpadding="5">
+					<h:outputText
+						value="10.	Existe algum projeto ou programa de educação ambiental acontecendo na comunidade?" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q39_p1_r1').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Sim" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q39_p1_r2').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Não" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q39_p1_r3').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Não sei" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText value="10.1	Se sim, qual? " />
+					<p:inputText
+						value="#{formularioController.getResposta('q39_p2_r1').texto}"
+						size="100" disabled="true" />
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid id="q40" columns="7" style="margin-bottom:10px"
+					cellpadding="5">
+					<h:outputText
+						value="11.	Você acha importante que aconteçam formações ou capacitações para conscientizar as pessoas da comunidade sobre o meio ambiente?" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q40_p1_r1').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Sim" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q40_p1_r2').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Não" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q40_p1_r3').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Não sei" />
+				</h:panelGrid>
 			</p:panel>
 
 			<p:panel header="BLOCO 5 - QUESTÕES PARA PESCADORES"
@@ -2125,12 +2509,335 @@
 				closeSpeed="500" widgetVar="panel5" style="margin-bottom:20px"
 				collapsed="true">
 
+				<br />
+
+				<h:panelGrid id="q41" columns="2" cellpadding="10">
+					<h:outputText
+						value="1.	A partir de que idade você começou a trabalhar com a pesca do camarão?" />
+					<p:inputText
+						value="#{formularioController.getResposta('q41_p1_r1').texto}"
+						size="3" style="text-align: center;" disabled="true" />
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid id="q42" columns="5" style="margin-bottom:10px"
+					cellpadding="5">
+					<h:outputText
+						value="2.	Você acha que o valor que você recebe pela venda do camarão é justo? " />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q42_p1_r1').pergunta.booleana ? formularioController.getResposta('q42_p1_r1').pergunta.respBooleana : false}"
+						disabled="true" />
+					<h:outputText value="Sim" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q42_p1_r1').pergunta.booleana ? !formularioController.getResposta('q42_p1_r1').pergunta.respBooleana : false}"
+						disabled="true" />
+					<h:outputText value="Não" />
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid id="q43" columns="1" style="margin-bottom:10px"
+					cellpadding="5">
+					<h:outputText
+						value="3.	O dinheiro da pesca representa quanto na renda familiar? " />
+				</h:panelGrid>
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText value="a." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q43_p1_r1').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="nada" />
+					<h:outputText value="b." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q43_p1_r2').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="menos da metade" />
+					<h:outputText value="c." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q43_p1_r3').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="metade" />
+					<h:outputText value="d." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q43_p1_r4').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="mais da metade" />
+					<h:outputText value="e." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q43_p1_r5').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="tudo" />
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid id="q44" columns="5" style="margin-bottom:10px"
+					cellpadding="5">
+					<h:outputText
+						value="4.	Dá para se sustentar o ano todo somente com a atividade de pesca do camarão?" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q44_p1_r1').pergunta.booleana ? formularioController.getResposta('q44_p1_r1').pergunta.respBooleana : false}"
+						disabled="true" />
+					<h:outputText value="Sim" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q44_p1_r1').pergunta.booleana ? !formularioController.getResposta('q44_p1_r1').pergunta.respBooleana : false}"
+						disabled="true" />
+					<h:outputText value="Não" />
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid id="q45" columns="5" style="margin-bottom:10px"
+					cellpadding="5">
+					<h:outputText
+						value="5.	Você é beneficiário de algum projeto ou programa de desenvolvimento comunitário? " />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q45_p1_r1').pergunta.booleana ? formularioController.getResposta('q45_p1_r1').pergunta.respBooleana : false}"
+						disabled="true" />
+					<h:outputText value="Sim" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q45_p1_r1').pergunta.booleana ? !formularioController.getResposta('q45_p1_r1').pergunta.respBooleana : false}"
+						disabled="true" />
+					<h:outputText value="Não" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText value="5.1 Se sim, qual? " />
+				</h:panelGrid>
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText value="a." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q45_p2_r1').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Entre marés" />
+					<h:outputText value="b." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q45_p2_r2').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Maré solidária" />
+					<h:outputText value="c." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q45_p2_r3').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Conservação Internacional" />
+					<h:outputText value="d." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q45_p2_r4').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Unesco" />
+					<h:outputText value="e." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q45_p2_r5').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Manguezais do Brasil" />
+					<h:outputText value="f." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q45_p2_r6').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Feiras do governo do Estado" />
+					<h:outputText value="g." />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q45_p2_r7').opcaoBoleana}"
+						disabled="true" />
+					<p:outputPanel>
+						<h:outputText value="Outro. Qual? " />
+						<p:inputText
+							value="#{formularioController.getResposta('q45_p2_r7').texto}"
+							size="50" disabled="true" />
+					</p:outputPanel>
+				</h:panelGrid>
 			</p:panel>
 
 			<p:panel header="BLOCO 6 - DADOS SOBRE A PRODUÇÃO E BENEFICIAMENTO"
 				toggleable="true" closable="false" toggleSpeed="500"
 				closeSpeed="500" widgetVar="panel6" style="margin-bottom:20px"
 				collapsed="true">
+
+				<br />
+
+				<h:panelGrid id="q46" columns="1" style="margin-bottom:10px"
+					cellpadding="5">
+					<h:outputText
+						value="1.	Normalmente, como é feita a pesca do camarão?" />
+				</h:panelGrid>
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText value="1.1" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q46_p1_r1').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Individual (sozinho)" />
+					<h:outputText value="1.2" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q46_p1_r2').opcaoBoleana}"
+						disabled="true" />
+					<p:outputPanel>
+						<h:outputText value="Em família. Quantas pessoas? " />
+						<p:inputText
+							value="#{formularioController.getResposta('q46_p1_r2').texto}"
+							size="3" disabled="true" />
+					</p:outputPanel>
+					<h:outputText value="1.3" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q46_p1_r3').opcaoBoleana}"
+						disabled="true" />
+					<p:outputPanel>
+						<h:outputText
+							value="Em grupo de companheiros(as). Quantas pessoas? " />
+						<p:inputText
+							value="#{formularioController.getResposta('q46_p1_r3').texto}"
+							size="3" disabled="true" />
+					</p:outputPanel>
+					<h:outputText value="1.4" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q46_p1_r4').opcaoBoleana}"
+						disabled="true" />
+					<p:outputPanel>
+						<h:outputText
+							value="Em grupo de companheiros(as) e família. Quantas pessoas? " />
+						<p:inputText
+							value="#{formularioController.getResposta('q46_p1_r4').texto}"
+							size="3" disabled="true" />
+					</p:outputPanel>
+					<h:outputText value="1.5" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q46_p1_r5').opcaoBoleana}"
+						disabled="true" />
+					<p:outputPanel>
+						<h:outputText value="Outros: " />
+						<p:inputText
+							value="#{formularioController.getResposta('q46_p1_r5').coluna[0]}"
+							size="50" disabled="true" />
+						<h:outputText value=" Quantas pessoas? " />
+						<p:inputText
+							value="#{formularioController.getResposta('q46_p1_r5').coluna[1]}"
+							size="3" disabled="true" />
+					</p:outputPanel>
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid id="q47" columns="1" style="margin-bottom:10px"
+					cellpadding="5">
+					<h:outputText
+						value="2. Quais são os principais locais de pesca (pesqueiros) mais utilizados? Quanto tempo se gasta ir até lá? " />
+				</h:panelGrid>
+				<h:panelGrid columns="4" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText value="Local 1: " />
+					<p:inputText
+						value="#{formularioController.getResposta('q47_p1_r1').coluna[0]}"
+						size="30" disabled="true" />
+					<h:outputText value=" Quanto tempo? " />
+					<p:inputText
+						value="#{formularioController.getResposta('q47_p1_r1').coluna[1]}"
+						size="30" disabled="true" />
+					<h:outputText value="Local 2: " />
+					<p:inputText
+						value="#{formularioController.getResposta('q47_p1_r2').coluna[0]}"
+						size="30" disabled="true" />
+					<h:outputText value=" Quanto tempo? " />
+					<p:inputText
+						value="#{formularioController.getResposta('q47_p1_r2').coluna[1]}"
+						size="30" disabled="true" />
+					<h:outputText value="Local 3: " />
+					<p:inputText
+						value="#{formularioController.getResposta('q47_p1_r3').coluna[0]}"
+						size="30" disabled="true" />
+					<h:outputText value=" Quanto tempo? " />
+					<p:inputText
+						value="#{formularioController.getResposta('q47_p1_r3').coluna[1]}"
+						size="30" disabled="true" />
+					<h:outputText value="Local 4: " />
+					<p:inputText
+						value="#{formularioController.getResposta('q47_p1_r4').coluna[0]}"
+						size="30" disabled="true" />
+					<h:outputText value=" Quanto tempo? " />
+					<p:inputText
+						value="#{formularioController.getResposta('q47_p1_r4').coluna[1]}"
+						size="30" disabled="true" />
+					<p:outputPanel>
+						<p:selectBooleanCheckbox
+							value="#{formularioController.getResposta('q47_p1_r5').opcaoBoleana}"
+							disabled="true" />
+						<h:outputText value=" Não sabe" />
+					</p:outputPanel>
+					<p:outputPanel>
+						<p:selectBooleanCheckbox
+							value="#{formularioController.getResposta('q47_p1_r6').opcaoBoleana}"
+							disabled="true" />
+						<h:outputText value=" Não respondeu" />
+					</p:outputPanel>
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid id="q48" columns="1" style="margin-bottom:10px"
+					cellpadding="5">
+					<h:outputText
+						value="3.	Quais são os instrumentos (técnicas) utilizados? (pode ser marcado mais de uma resposta) " />
+				</h:panelGrid>
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText value="3.1" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q48_p1_r1').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Matapi " />
+					<h:outputText value="3.2" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q48_p1_r2').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Matapi com viveiro " />
+					<h:outputText value="3.3" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q48_p1_r3').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Rede de arrasto " />
+					<h:outputText value="3.4" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q48_p1_r4').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="Tarrafa " />
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid id="q49" columns="1" style="margin-bottom:10px"
+					cellpadding="5">
+					<h:outputText
+						value="4.	Em qual estação do ano realiza a pesca? (filtro da questão de produção) " />
+				</h:panelGrid>
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText value="4.1" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q49_p1_r1').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="verão" />
+					<h:outputText value="4.2" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q49_p1_r2').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="inverno" />
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid id="q50" columns="1" style="margin-bottom:10px"
+					cellpadding="5">
+					<h:outputText
+						value="5.	Em qual maré realiza a pesca?  (filtro de produção) " />
+				</h:panelGrid>
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText value="5.1" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q50_p1_r1').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="pequena/baixa/morta" />
+					<h:outputText value="5.2" />
+					<p:selectBooleanCheckbox
+						value="#{formularioController.getResposta('q50_p1_r2').opcaoBoleana}"
+						disabled="true" />
+					<h:outputText value="alta/grande/lançante" />
+				</h:panelGrid>
 
 			</p:panel>
 

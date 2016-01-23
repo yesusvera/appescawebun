@@ -59,9 +59,6 @@ public class Pergunta implements java.io.Serializable {
 
 	@Column(name = "resp_booleana")
 	public Boolean getRespBooleana() {
-		if(id == 19){
-			System.out.println("teste");
-		}
 		return this.respBooleana;
 	}
 
