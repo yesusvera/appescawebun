@@ -34,8 +34,8 @@ public class UsuarioResourceRESTService extends BaseREST{
 
 		if (usr != null) {
 			usr.setImagem(null);
-//			usr.getListaEquipes();
 			usr.setListaEquipes(null);
+			usr.setListaLocalizacoes(null);
 		}
 
 		RespAutenticacaoREST rs = new RespAutenticacaoREST(usr, usr == null,

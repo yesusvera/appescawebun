@@ -22,13 +22,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.joda.time.DateTime;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
-import org.primefaces.model.map.DefaultMapModel;
-import org.primefaces.model.map.LatLng;
-import org.primefaces.model.map.MapModel;
-import org.primefaces.model.map.Marker;
 
 import br.org.unesco.appesca.enums.PerfilEnum;
 
@@ -37,14 +32,6 @@ import br.org.unesco.appesca.enums.PerfilEnum;
 public class Usuario implements java.io.Serializable {
 
 	private static final long serialVersionUID = -7140175801442164346L;
-
-	private static final int SEGUNDA = 1;
-	private static final int TERÇA = 2;
-	private static final int QUARTA = 3;
-	private static final int QUINTA = 4;
-	private static final int SEXTA = 5;
-	private static final int SABADO = 6;
-	private static final int DOMINGO = 7;
 
 	private Integer id;
 	private String nome;
@@ -55,14 +42,10 @@ public class Usuario implements java.io.Serializable {
 	private PerfilEnum perfil;
 	private byte[] imagem;
 	private String uf;
-	private String centerMap = "-1.40740000,-48.45145000";
-	private String zoomMapa = "10";
 
 	private List<Equipe> listaEquipes;
 
-	private List<Rastro> listaRastros;
-
-	private MapModel map;
+	private List<LocalizacaoUsuario> listaLocalizacoes;
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -174,81 +157,11 @@ public class Usuario implements java.io.Serializable {
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "usuario")
 	@Fetch(FetchMode.SUBSELECT)
-	public List<Rastro> getListaRastros() {
-		return listaRastros;
+	public List<LocalizacaoUsuario> getListaLocalizacoes() {
+		return listaLocalizacoes;
 	}
 
-	public void setListaRastros(List<Rastro> listaRastros) {
-		this.listaRastros = listaRastros;
-		if (listaRastros != null && listaRastros.size() > 0)
-			setMap();
-	}
-
-	public void setMap() {
-		map = new DefaultMapModel();
-		int ultimoRastro = listaRastros.size() - 1;
-
-		for (Rastro r : listaRastros) {
-			DateTime dt = new DateTime(r.getDataRegistro());
-			if (r.getLatitude() != null && r.getLongitude() != null) {
-				LatLng coord = new LatLng(r.getLatitude().doubleValue(), r.getLongitude().doubleValue());
-				map.addOverlay(getMarkerComPinColorido(coord, r.getData() + " " + r.getHora(), dt.dayOfWeek().get()));
-				if (listaRastros.lastIndexOf(r) == ultimoRastro) {
-					setCenterMap(r.getLatitude().doubleValue() + "," + r.getLongitude().doubleValue());
-					setZoomMapa("15");
-				}
-			}
-
-		}
-	}
-
-	@Transient
-	public MapModel getMap() {
-		return map;
-	}
-
-	@Transient
-	public String getCenterMap() {
-		return centerMap;
-	}
-
-	public void setCenterMap(String center) {
-		this.centerMap = center;
-	}
-
-	@Transient
-	private Marker getMarkerComPinColorido(LatLng coord, String titulo, int dia) {
-		switch (dia) {
-		case SEGUNDA:
-			return new Marker(coord, titulo, "konyaalti.png", "http://maps.google.com/mapfiles/ms/micons/green-dot.png");
-
-		case TERÇA:
-			return new Marker(coord, titulo, "konyaalti.png", "http://maps.google.com/mapfiles/ms/micons/blue-dot.png");
-			
-		case QUARTA:
-			return new Marker(coord, titulo, "konyaalti.png", "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png");
-
-		case QUINTA:
-			return new Marker(coord, titulo, "konyaalti.png", "http://maps.google.com/mapfiles/ms/micons/orange-dot.png");
-
-		case SEXTA:
-			return new Marker(coord, titulo, "konyaalti.png", "http://maps.google.com/mapfiles/ms/micons/red-dot.png");
-
-		case SABADO:
-			return new Marker(coord, titulo, "konyaalti.png", "http://maps.google.com/mapfiles/marker_black.png");
-
-		case DOMINGO:
-			return new Marker(coord, titulo, "konyaalti.png", "http://maps.google.com/mapfiles/marker_grey.png");
-		}
-		return new Marker(coord);
-	}
-
-	@Transient
-	public String getZoomMapa() {
-		return zoomMapa;
-	}
-
-	public void setZoomMapa(String zoomMapa) {
-		this.zoomMapa = zoomMapa;
+	public void setListaLocalizacoes(List<LocalizacaoUsuario> listaLocalizacoes) {
+		this.listaLocalizacoes = listaLocalizacoes;
 	}
 }

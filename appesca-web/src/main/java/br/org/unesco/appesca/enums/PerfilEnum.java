@@ -20,7 +20,7 @@ public enum PerfilEnum {
 	public int getValor(){
 		return valor;
 	}
-
+	
 	public String getDescricao(){
 		return desc;
 	}
@@ -32,4 +32,9 @@ public enum PerfilEnum {
 	public String getFontAweSomeIcon(){
 		return fontAweSomeIcon;
 	}
+	
+	public static PerfilEnum fromValue(int vlr){
+		return PerfilEnum.values()[vlr];
+	}
+
 }
