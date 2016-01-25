@@ -29,8 +29,7 @@ public class FormularioController implements Serializable {
 
 	@Inject
 	private FormularioService formularioService;
-	
-	
+
 	@Inject
 	private RespostaService respostaService;
 
@@ -42,11 +41,13 @@ public class FormularioController implements Serializable {
 	private List<Formulario> listaFormularios;
 
 	private Formulario formulario;
-	
-	@Inject Identidade identidade;
-	
-	private Resposta respostaEditavel10;
-	
+
+	@Inject
+	Identidade identidade;
+
+	private Resposta problemasF1Q72;
+
+	private Resposta solucoesF1Q72;
 
 	@PostConstruct
 	public void inicializaNovoFormulario() {
@@ -60,13 +61,14 @@ public class FormularioController implements Serializable {
 	public String visualizar(Formulario formulario) {
 		this.formulario = formulario;
 		carregarRespostasEditaveis();
-		
+
 		return "formCamaraoRegional?faces-redirect=true";
 	}
 
 	private void carregarRespostasEditaveis() {
-		this.respostaEditavel10 = getResposta("q10_p2_r8");
-		
+		this.problemasF1Q72 = getResposta("q72_p1_r1");
+		this.solucoesF1Q72 = getResposta("q72_p1_r2");
+
 	}
 
 	public List<Formulario> getListaFormularios() {
@@ -126,15 +128,13 @@ public class FormularioController implements Serializable {
 					}
 				}
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return new Resposta();
 	}
 
-	
-	
 	public List<Resposta> getListaRespostas(String chave) {
 		try {
 			String indices[] = chave.split("_");
@@ -150,35 +150,42 @@ public class FormularioController implements Serializable {
 					}
 				}
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return new ArrayList<Resposta>();
 	}
-	
-	
+
 	public void salvarResposta(Resposta resp) {
 		try {
 			respostaService.save(resp);
-	        addMessage("Alteração realizada com sucesso!!");
+			addMessage("Alteração realizada com sucesso!!");
 		} catch (Exception e) {
 			addMessage("Erro ao salvar a resposta!!");
 		}
-		
-    }
-     
-    public void addMessage(String summary) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
-        FacesContext.getCurrentInstance().addMessage(null, message);
-    }
 
-	public Resposta getRespostaEditavel10() {
-		return respostaEditavel10;
 	}
 
-	public void setRespostaEditavel10(Resposta respostaEditavel10) {
-		this.respostaEditavel10 = respostaEditavel10;
+	public void addMessage(String summary) {
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+		FacesContext.getCurrentInstance().addMessage(null, message);
+	}
+
+	public Resposta getProblemasF1Q72() {
+		return problemasF1Q72;
+	}
+
+	public void setProblemasF1Q72(Resposta problemasF1Q72) {
+		this.problemasF1Q72 = problemasF1Q72;
+	}
+
+	public Resposta getSolucoesF1Q72() {
+		return solucoesF1Q72;
+	}
+
+	public void setSolucoesF1Q72(Resposta solucoesF1Q72) {
+		this.solucoesF1Q72 = solucoesF1Q72;
 	}
 
 }
