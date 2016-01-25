@@ -52,12 +52,9 @@
 					<p:dialog id="gmapDialog" widgetVar="dlg + #{usr.id}" width="625" height="400"
 						modal="true">
 
-						<p:gmap id="gmap" center="#{usr.centerMap}" zoom="#{usr.zoomMapa}"
-							type="HYBRID" style="width:100%;height:400px" model="#{usr.map}" />
-
+						<p:gmap id="gmap" center="#{usuarioController.getCenterMap(usr)}" zoom="10"
+							type="HYBRID" style="width:100%;height:400px" model="#{usuarioController.getMap(usr)}" />
 					</p:dialog>
-
-
 				</p:column>
 			</p:dataTable>
 			<br />

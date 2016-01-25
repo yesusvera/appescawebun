@@ -12,7 +12,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.Transient;
 
 import org.joda.time.DateTime;
 import org.primefaces.event.CaptureEvent;
@@ -25,8 +24,9 @@ import org.primefaces.model.map.Marker;
 
 import br.org.unesco.appesca.enums.PerfilEnum;
 import br.org.unesco.appesca.service.UsuarioService;
+import br.org.unesco.model.DiasSemanaEnum;
 import br.org.unesco.model.Identidade;
-import br.org.unesco.model.Rastro;
+import br.org.unesco.model.LocalizacaoUsuario;
 import br.org.unesco.model.UFEnum;
 import br.org.unesco.model.Usuario;
 
@@ -35,9 +35,6 @@ import br.org.unesco.model.Usuario;
 public class UsuarioController implements Serializable {
 
 	private static final long serialVersionUID = 7096314126107579474L;
-
-	@Inject
-    private FacesContext facesContext;
 
     @Inject
     private UsuarioService usuarioService;
@@ -158,15 +155,30 @@ public class UsuarioController implements Serializable {
 		this.confirmacaoSenha = confirmacaoSenha;
 	}
 	
-	private MapModel map;
-	public MapModel getMap() {
-//		map = new DefaultMapModel();
-//
-//				LatLng coord = new LatLng(-1.40740000, -48.45145000);
-//				map.addOverlay(new Marker(coord, "Local do formulario", "konyaalti.png", "http://maps.google.com/mapfiles/ms/micons/blue-dot.png"));
-//			
-	
+	public MapModel getMap(Usuario usuario) {
+		MapModel map = new DefaultMapModel();
+		List<LocalizacaoUsuario> listaRastros = usuario.getListaLocalizacoes();
+		for (LocalizacaoUsuario r : listaRastros) {
+			DateTime dt = new DateTime(r.getDataRegistro());
+			if (r.getLatitude() != null && r.getLongitude() != null) {
+				LatLng coord = new LatLng(r.getLatitude().doubleValue(), r.getLongitude().doubleValue());
+				map.addOverlay(getMarkerComPinColorido(coord, r.getData() + " " + r.getHora(), DiasSemanaEnum.fromValue(dt.dayOfWeek().get())));
+			}
+		}
 		return map;
 	}
 	
+	public String getCenterMap(Usuario usuario){
+		List<LocalizacaoUsuario> listaRastros = usuario.getListaLocalizacoes();
+		if(listaRastros!=null && listaRastros.size() > 0){
+			LocalizacaoUsuario r = listaRastros.get(listaRastros.size()-1);
+			return r.getLatitude().doubleValue() + "," + r.getLongitude().doubleValue();
+		}else{
+			return "-1.40740000,-48.45145000";
+		}
+	}
+	
+	private Marker getMarkerComPinColorido(LatLng coord, String titulo, DiasSemanaEnum dia) {
+		return new Marker(coord, titulo, "konyaalti.png", "http://maps.google.com/mapfiles/" + dia.getIcone());
+	}
 }

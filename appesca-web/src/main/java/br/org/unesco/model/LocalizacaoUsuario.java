@@ -19,7 +19,7 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "TB_HIST_RASTRO", schema="appesca")
-public class Rastro implements java.io.Serializable {
+public class LocalizacaoUsuario implements java.io.Serializable {
 
 	private static final long serialVersionUID = 2165508619825487958L;
 
@@ -29,10 +29,8 @@ public class Rastro implements java.io.Serializable {
 	private BigDecimal latitude;
 	private BigDecimal longitude;
 	
-	
-	public Rastro() {
+	public LocalizacaoUsuario() {
 	}
-
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -94,7 +92,4 @@ public class Rastro implements java.io.Serializable {
 	public void setLongitude(BigDecimal longitude) {
 		this.longitude = longitude;
 	}
-
-
-
 }
