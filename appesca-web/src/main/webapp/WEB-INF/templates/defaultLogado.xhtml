@@ -59,7 +59,7 @@
 					<p:menuitem value="Usuários" url="/admin/usuarios.jsf" />
 				</p:submenu>
 				<p:submenu label="Formulários de pesquisa" icon="ui-icon-pencil">
-					<p:menuitem value="Camarão Piticaia e Branco" url="#" rendered="#{identidade.eAdministrador() or (!identidade.eAdministrador() and identidade.usuarioLogado.uf == 'MA')}"/>
+					<p:menuitem value="Camarão Piticaia e Branco" url="/admin/entrevistadosCamaraoPiticaiaEBranco.jsf" rendered="#{identidade.eAdministrador() or (!identidade.eAdministrador() and identidade.usuarioLogado.uf == 'MA')}"/>
 					<p:menuitem value="Caranguejo" url="#" rendered="#{identidade.eAdministrador() or (!identidade.eAdministrador() and identidade.usuarioLogado.uf == 'PA')}"/>
 					<p:menuitem value="Camarão Regional"
 						url="/admin/entrevistadosCamaraoRegional.jsf" rendered="#{identidade.eAdministrador() or (!identidade.eAdministrador()  and (identidade.usuarioLogado.uf == 'AP' or identidade.usuarioLogado.uf == 'PA'))}"/>
