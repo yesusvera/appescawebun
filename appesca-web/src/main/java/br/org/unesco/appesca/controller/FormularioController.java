@@ -68,13 +68,14 @@ public class FormularioController implements Serializable {
 		switch (formulario.getIdTipoFormulario()) {
 		case 1:
 			carregarRespostasEditaveisBranco();
-			return "formCamaraoPiticaiaEBranco?faces-redirect=true";
+			return "formCamaraoRegional?faces-redirect=true";
 		case 2:
 
 			break;
 		case 3:
 			carregarRespostasEditaveisRegional();
-			return "formCamaraoPiticaiaEBranco?faces-redirect=true";
+			return "formCamaraoRegional?faces-redirect=true";
+			//return "formCamaraoPiticaiaEBranco?faces-redirect=true";
 		}
 		return "formCamaraoRegional?faces-redirect=true";
 
