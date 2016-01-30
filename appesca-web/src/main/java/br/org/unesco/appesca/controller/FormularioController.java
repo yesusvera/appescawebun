@@ -53,6 +53,10 @@ public class FormularioController implements Serializable {
 
 	private Resposta solucoesF2Q60;
 
+	private Resposta problemasF3Q74;
+
+	private Resposta solucoesF3Q74;
+
 	@PostConstruct
 	public void inicializaNovoFormulario() {
 		try {
@@ -68,14 +72,14 @@ public class FormularioController implements Serializable {
 		switch (formulario.getIdTipoFormulario()) {
 		case 1:
 			carregarRespostasEditaveisBranco();
-			return "formCamaraoRegional?faces-redirect=true";
+			return "formCamaraoPiticaiaEBranco?faces-redirect=true";
 		case 2:
-
-			break;
+			carregarRespostasEditaveisCaranguejo();
+			return "formCaranguejo?faces-redirect=true";
 		case 3:
 			carregarRespostasEditaveisRegional();
-			return "formCamaraoRegional?faces-redirect=true";
-			//return "formCamaraoPiticaiaEBranco?faces-redirect=true";
+			return "formCaranguejo?faces-redirect=true";
+		// return "formCamaraoRegional?faces-redirect=true";
 		}
 		return "formCamaraoRegional?faces-redirect=true";
 
@@ -90,6 +94,11 @@ public class FormularioController implements Serializable {
 	private void carregarRespostasEditaveisBranco() {
 		this.problemasF2Q60 = getResposta("q60_p1_r1");
 		this.solucoesF2Q60 = getResposta("q60_p1_r2");
+	}
+
+	private void carregarRespostasEditaveisCaranguejo() {
+		this.problemasF3Q74 = getResposta("q74_p1_r1");
+		this.solucoesF3Q74 = getResposta("q74_p1_r2");
 	}
 
 	public List<Formulario> getListaFormularios() {
@@ -223,6 +232,22 @@ public class FormularioController implements Serializable {
 
 	public void setSolucoesF2Q60(Resposta solucoesF2Q60) {
 		this.solucoesF2Q60 = solucoesF2Q60;
+	}
+
+	public Resposta getProblemasF3Q74() {
+		return problemasF3Q74;
+	}
+
+	public void setProblemasF3Q74(Resposta problemasF3Q74) {
+		this.problemasF3Q74 = problemasF3Q74;
+	}
+
+	public Resposta getSolucoesF3Q74() {
+		return solucoesF3Q74;
+	}
+
+	public void setSolucoesF3Q74(Resposta solucoesF3Q74) {
+		this.solucoesF3Q74 = solucoesF3Q74;
 	}
 
 }

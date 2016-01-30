@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    template="/WEB-INF/templates/defaultLogado.xhtml">
+    <ui:define name="content">
+        <h1>Formulário - Caranguejo</h1>
+       <h:form id="entrevistadosCaranguejo">
+			<p:dataTable var="formulario" value="#{formularioController.listaFormularios}">
+				
+				<p:column headerText="Nome" filterBy="#{formulario.entrevistado.nomeCompleto}" sortBy="#{formulario.entrevistado.nomeCompleto}" style="text-align: center;">
+					<h:outputText value="#{formulario.entrevistado.nomeCompleto}" />
+				</p:column>
+				<p:column headerText="UF" filterBy="#{formulario.entrevistado.municipio.uf}" style="text-align: center;">
+					<h:outputText value="#{formulario.entrevistado.municipio.uf}" />
+				</p:column>
+				<p:column headerText="Sexo" filterBy="#{formulario.entrevistado.sexo}" style="text-align: center;">
+					<h:outputText value="#{formulario.entrevistado.sexo}" />
+				</p:column>
+				<p:column headerText="Data" filterBy="#{formulario.data}" sortBy="#{formulario.data}" style="text-align: center;">
+					<h:outputText value="#{formulario.data}" />
+				</p:column>
+				<p:column headerText="Hora" style="text-align: center;">
+					<h:outputText value="#{formulario.hora}" />
+				</p:column>
+				<p:column headerText="Ações" style="text-align: center;">
+					<p:commandLink action="#{formularioController.visualizar(formulario)}">
+						<i class="fa fa-info-circle"></i>
+					</p:commandLink>
+				</p:column>
+			</p:dataTable>
+			<br/>
+			<!-- <h:commandButton value="Mostrar mais" /> -->
+		</h:form>
+    </ui:define>
+</ui:composition>
