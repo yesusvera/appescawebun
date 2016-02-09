@@ -1,7 +1,9 @@
 package br.org.unesco.appesca.controller;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -15,6 +17,7 @@ import javax.inject.Named;
 
 import org.joda.time.DateTime;
 import org.primefaces.event.CaptureEvent;
+import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.map.DefaultMapModel;
@@ -36,63 +39,66 @@ public class UsuarioController implements Serializable {
 
 	private static final long serialVersionUID = 7096314126107579474L;
 
-    @Inject
-    private UsuarioService usuarioService;
+	@Inject
+	private UsuarioService usuarioService;
 
-    @Produces
-    @Named
-    private List<Usuario> listaUsuarios;
-    
-    private Usuario usuario = new Usuario();
-    
-    private String strPerfil;
-    
-    private String confirmacaoSenha;
-    
-    @Inject Identidade identidade;
-    
+	@Produces
+	@Named
+	private List<Usuario> listaUsuarios;
 
-    @PostConstruct
-    public void inicializaNovoUsuario() {
-    	try {
+	private Usuario usuario = new Usuario();
+
+	private String strPerfil;
+
+	private String confirmacaoSenha;
+
+	@Inject
+	Identidade identidade;
+
+	private Date dtInicialMapa;
+	private Date dtFinalMapa;
+
+	@PostConstruct
+	public void iniciali8zaNovoUsuario() {
+		try {
 			listaUsuarios = usuarioService.listAll();
 			usuario = new Usuario();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-    }
+	}
 
-    public String salvar() throws Exception{
-    	usuarioService.save(usuario);
-    	listaUsuarios = usuarioService.listAll();
-    	return "usuarios";
-    }
+	public String salvar() throws Exception {
+		usuarioService.save(usuario);
+		listaUsuarios = usuarioService.listAll();
+		return "usuarios";
+	}
 
-    public String cadastrarUsuario(){
-    	usuario = new Usuario();
-    	return "cadastrarUsuario";
-    }
-    
-    public String editar(Usuario usr){
-    	this.usuario = usr;
-    	this.confirmacaoSenha = usr.getSenha();
-    	return "cadastrarUsuario";
-    }
-    
-    //Tirar outra foto
-    public void tirarOutra(){
-        usuario.setImagem(null);
-    }
-    
-    public void oncapture(CaptureEvent captureEvent) {
-        byte[] data = captureEvent.getData();
-        usuario.setImagem(data);
-    }
-    
-    public StreamedContent getDynamicImage() {
+	public String cadastrarUsuario() {
+		usuario = new Usuario();
+		return "cadastrarUsuario";
+	}
+
+	public String editar(Usuario usr) {
+		this.usuario = usr;
+		this.confirmacaoSenha = usr.getSenha();
+		return "cadastrarUsuario";
+	}
+
+	// Tirar outra foto
+	public void tirarOutra() {
+		usuario.setImagem(null);
+	}
+
+	public void oncapture(CaptureEvent captureEvent) {
+		byte[] data = captureEvent.getData();
+		usuario.setImagem(data);
+	}
+
+	public StreamedContent getDynamicImage() {
 
 		String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("image_id");
-		if (id != null && listaUsuarios!=null && !listaUsuarios.isEmpty()) {
+		if (id != null && listaUsuarios != null && !listaUsuarios.isEmpty()) {
 			for (Usuario usrTmp : listaUsuarios) {
 				if (usrTmp.getId().intValue() == Integer.valueOf(id)) {
 					return usrTmp.getImageGraphics();
@@ -100,29 +106,28 @@ public class UsuarioController implements Serializable {
 			}
 		}
 
-		 
-		 return new DefaultStreamedContent();
-	 }
+		return new DefaultStreamedContent();
+	}
 
-    public List<SelectItem> listaPerfis() {
-    	List<SelectItem> items = new ArrayList<>();
-        for(PerfilEnum g: PerfilEnum.values()) {
-          if(g.equals(PerfilEnum.ADMINISTRADOR) && !identidade.eAdministrador()){
-        	  continue;
-          }
-          items.add(new SelectItem(g, g.getDescricao()));
-        }
-        return items;
-      }
-    
-    public List<SelectItem> listaUFs() {
-    	List<SelectItem> items = new ArrayList<>();
-        for(UFEnum uf: UFEnum.values()) {
-          items.add(new SelectItem(uf, uf.getNome()));
-        }
-        return items;
-      }
-    
+	public List<SelectItem> listaPerfis() {
+		List<SelectItem> items = new ArrayList<>();
+		for (PerfilEnum g : PerfilEnum.values()) {
+			if (g.equals(PerfilEnum.ADMINISTRADOR) && !identidade.eAdministrador()) {
+				continue;
+			}
+			items.add(new SelectItem(g, g.getDescricao()));
+		}
+		return items;
+	}
+
+	public List<SelectItem> listaUFs() {
+		List<SelectItem> items = new ArrayList<>();
+		for (UFEnum uf : UFEnum.values()) {
+			items.add(new SelectItem(uf, uf.getNome()));
+		}
+		return items;
+	}
+
 	public List<Usuario> getListaUsuarios() {
 		return listaUsuarios;
 	}
@@ -154,31 +159,64 @@ public class UsuarioController implements Serializable {
 	public void setConfirmacaoSenha(String confirmacaoSenha) {
 		this.confirmacaoSenha = confirmacaoSenha;
 	}
-	
+
 	public MapModel getMap(Usuario usuario) {
 		MapModel map = new DefaultMapModel();
 		List<LocalizacaoUsuario> listaRastros = usuario.getListaLocalizacoes();
 		for (LocalizacaoUsuario r : listaRastros) {
+			if (this.dtInicialMapa != null) {
+				if (r.getDataRegistro().before(this.dtInicialMapa))
+					continue;
+			}
+			if (this.dtFinalMapa != null) {
+				if (r.getDataRegistro().after(this.dtFinalMapa))
+					continue;
+			}
 			DateTime dt = new DateTime(r.getDataRegistro());
 			if (r.getLatitude() != null && r.getLongitude() != null) {
 				LatLng coord = new LatLng(r.getLatitude().doubleValue(), r.getLongitude().doubleValue());
-				map.addOverlay(getMarkerComPinColorido(coord, r.getData() + " " + r.getHora(), DiasSemanaEnum.fromValue(dt.dayOfWeek().get())));
+				map.addOverlay(getMarkerComPinColorido(coord, r.getData() + " " + r.getHora(),
+						DiasSemanaEnum.fromValue(dt.dayOfWeek().get())));
 			}
 		}
 		return map;
 	}
-	
-	public String getCenterMap(Usuario usuario){
+
+	public String getCenterMap(Usuario usuario) {
 		List<LocalizacaoUsuario> listaRastros = usuario.getListaLocalizacoes();
-		if(listaRastros!=null && listaRastros.size() > 0){
-			LocalizacaoUsuario r = listaRastros.get(listaRastros.size()-1);
+		if (listaRastros != null && listaRastros.size() > 0) {
+			LocalizacaoUsuario r = listaRastros.get(listaRastros.size() - 1);
 			return r.getLatitude().doubleValue() + "," + r.getLongitude().doubleValue();
-		}else{
+		} else {
 			return "-1.40740000,-48.45145000";
 		}
 	}
-	
+
 	private Marker getMarkerComPinColorido(LatLng coord, String titulo, DiasSemanaEnum dia) {
 		return new Marker(coord, titulo, "konyaalti.png", "http://maps.google.com/mapfiles/" + dia.getIcone());
+	}
+
+	public Date getDtInicialMapa() {
+		return dtInicialMapa;
+	}
+
+	public void setDtInicialMapa(Date dtInicialMapa) {
+		this.dtInicialMapa = dtInicialMapa;
+	}
+
+	public Date getDtFinalMapa() {
+		return dtFinalMapa;
+	}
+
+	public void setDtFinalMapa(Date dtFinalMapa) {
+		this.dtFinalMapa = dtFinalMapa;
+	}
+
+	public void definirDataInicial(SelectEvent event) {
+		this.dtInicialMapa = (Date) event.getObject();
+	}
+
+	public void definirDataFinal(SelectEvent event) {
+		this.dtFinalMapa = (Date) event.getObject();
 	}
 }

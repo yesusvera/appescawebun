@@ -7,8 +7,7 @@
 	template="/WEB-INF/templates/defaultLogado.xhtml">
 	<ui:define name="content">
 		<h1>Usuários</h1>
-		<h:form id="forms">
-
+		<h:form id="forms" prependId="false">
 			<p:dataTable var="usr" value="#{usuarioController.listaUsuarios}"
 				style=" text-align: center;">
 				<p:column width="150" headerText="Nome" filterBy="#{usr.nome}"
@@ -45,15 +44,39 @@
 						rendered="#{identidade.eAdministrador() or identidade.eCoordenador() and usr.perfil.valor ge identidade.usuarioLogado.perfil.valor}">
 						<i class="fa fa-pencil-square-o" />
 					</p:commandLink>
-					<p:commandLink onclick="PF('dlg + #{usr.id}').show();" 
+					<p:commandLink onclick="PF('dlg + #{usr.id}').show();"
 						rendered="#{identidade.eAdministrador() or identidade.eCoordenador() and usr.perfil.valor ge identidade.usuarioLogado.perfil.valor}">
 						<i class="fa fa-map-marker" />
 					</p:commandLink>
-					<p:dialog id="gmapDialog" widgetVar="dlg + #{usr.id}" width="625" height="400"
-						modal="true">
+					<p:dialog id="gmapDialog" widgetVar="dlg + #{usr.id}" width="625"
+						height="450" modal="true">
+						<p:outputPanel>
+							<h:outputText value="Data início:&#160;" />
+							<p:calendar id="dtIni" showOn="button" locale="pt_BR">
+								<p:ajax event="dateSelect"
+									listener="#{usuarioController.definirDataInicial}" />
+							</p:calendar>
 
-						<p:gmap id="gmap" center="#{usuarioController.getCenterMap(usr)}" zoom="10"
-							type="HYBRID" style="width:100%;height:400px" model="#{usuarioController.getMap(usr)}" />
+							<h:outputText value="&#160;&#160;&#160;Data fim:&#160;" />
+							<p:calendar id="dtFim" showOn="button" locale="pt_BR">
+								<p:ajax event="dateSelect"
+									listener="#{usuarioController.definirDataFinal}" />
+							</p:calendar>
+
+							<p:commandLink 
+								update="geomap">
+								<i class="fa fa-search" />
+							</p:commandLink>
+						</p:outputPanel>
+
+						<br />
+
+						<p:gmap id="geomap"
+							center="#{usuarioController.getCenterMap(usr)}" zoom="15"
+							type="HYBRID" style="width:100%;height:400px"
+							model="#{usuarioController.getMap(usr)}">
+						</p:gmap>
+
 					</p:dialog>
 				</p:column>
 			</p:dataTable>
